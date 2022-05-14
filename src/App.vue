@@ -7,6 +7,6 @@
 <style lang="scss">
 #main {
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem;
 }
 </style>

@@ -17,7 +17,7 @@ import { Button, Icon } from 'vant'
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .welcome {
   margin-top: 10rem;
   margin-bottom: 10rem;
