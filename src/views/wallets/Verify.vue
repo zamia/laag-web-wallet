@@ -2,15 +2,33 @@
 import { Button, Icon, Radio, RadioGroup } from 'vant';
 import Header from '@/components/Header.vue';
 import Title from '@/components/Title.vue';
-import { ref } from "vue";
+import { ref, onMounted, computed } from "vue";
+import { usePhraseStore } from "@/store.js"
 
-let random_word_1 = ref("");
-let random_word_2 = ref("");
+let user_choices_q1 = ref("");
+let user_choices_q2 = ref("");
+
+let store = usePhraseStore();
+const words = store.getPhraseArray;
+
+const first = 1;
+const second = 2;
+const q1_answer = words[first];
+const q2_answer = words[second];
+const q1_answers = words.select_three(first).shuffle();
+const q2_answers = words.select_three(second).shuffle();
+
+onMounted(() => {
+})
+
+const select_correct = computed(() => {
+  return user_choices_q1.value == q1_answer
+    && user_choices_q2.value == q2_answer
+})
 
 </script>
 
 <template>
-
   <Header>Create New Wallet</Header>
   <Title title="Confirm Recovery Phrase">
     Recovery phrase is your backup of your wallet
@@ -21,10 +39,10 @@ let random_word_2 = ref("");
       please select the 3rd word of recovery phrase:
     </div>
     <div class="question__options">
-      <RadioGroup v-model="random_word_1" direction="horizontal">
-        <Radio name="first">first</Radio>
-        <Radio name="second">second</Radio>
-        <Radio name="third">third</Radio>
+      <RadioGroup v-model="user_choices_q1" direction="horizontal">
+        <div v-for="w in q1_answers" :key="w">
+          <Radio :name="w">{{ w }}</Radio>
+        </div>
       </RadioGroup>
     </div>
   </div>
@@ -34,16 +52,16 @@ let random_word_2 = ref("");
       please select the 7th word of recovery phrase:
     </div>
     <div class="question__options">
-      <RadioGroup v-model="random_word_2" direction="horizontal">
-        <Radio name="first">first</Radio>
-        <Radio name="second">second</Radio>
-        <Radio name="third">third</Radio>
+      <RadioGroup v-model="user_choices_q2" direction="horizontal">
+        <div v-for="w in q2_answers" :key="w">
+          <Radio :name="w">{{ w }}</Radio>
+        </div>
       </RadioGroup>
     </div>
   </div>
 
   <div class="commands">
-    <Button type="primary" block to="/wallets/done">Continue</Button>
+    <Button type="primary" :disabled="!select_correct" block to="/wallets/done">Continue</Button>
   </div>
 </template>
 

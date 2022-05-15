@@ -4,6 +4,9 @@ import { resolve } from "path";
 import styleImport, { VantResolve } from "vite-plugin-style-import";
 
 export default defineConfig({
+  define: {
+    global: {},
+  },
   plugins: [
     vue(),
     styleImport({
@@ -13,6 +16,8 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
+      "readable-stream": "vite-compatible-readable-stream",
+      "cipher-base": "vite-cipher-base",
     },
   },
   server: {
