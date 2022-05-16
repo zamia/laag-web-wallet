@@ -16,8 +16,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
-      "readable-stream": "vite-compatible-readable-stream",
-      "cipher-base": "vite-cipher-base",
     },
   },
   server: {

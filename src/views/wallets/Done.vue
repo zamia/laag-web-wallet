@@ -4,44 +4,41 @@ import { Button, Icon, Loading } from 'vant'
 import { ref, onMounted } from 'vue'
 import { usePhraseStore } from "@/store.js"
 import * as bip39 from '@scure/bip39'
-import * as ed from 'ed25519-hd-key'
 import { Keypair } from '@solana/web3.js'
+import { Buffer } from 'buffer'
+import { derivePathByApi } from '@/utils/misc.js'
+import { saveToStorage } from '@/utils/local_storage.js'
 
 let loading = ref(true);
 let error = ref(false);
 
 const store = usePhraseStore();
-// const phrase = store.phrase;
-const phrase = "that grit custom whip poet fit evidence mean plastic amazing neither rack";
-// pubkey: 8HiU76FpDvRUbULvkiPNYYkMGU6eGNiFYNo8rt9jvnTV
+const phrase = store.phrase;
 
-onMounted(() => {
+onMounted(async () => {
   if (!phrase || phrase == "") {
     error.value = true;
     return;
   }
 
-  const seed = bip39.mnemonicToSeedSync(phrase);
-  console.log(`bip32 seed: ${seed}`);
+  const seed = bip39.mnemonicToSeedSync(phrase)
+  const seedHex = Buffer.from(seed).toString('hex');
+  console.log(`bip39 seed: ${seedHex}`);
+
   const path = "m/44'/501'/0'/0'";
+  // const derivedSeedHex = ed.derivePath(path, seedHex).key.toString('hex');
+  const derivedSeedHex = await derivePathByApi(path, seedHex);
 
-  const derivedSeed = ed.derivePath(path, seed.toString('hex')).key;
+  const derivedSeed = Buffer.from(derivedSeedHex, 'hex');
   const keypairs = Keypair.fromSeed(derivedSeed);
-  store.publibKey = keypairs.publibKey;
+  store.publicKey = keypairs.publicKey;
   store.secretKey = keypairs.secretKey;
-
-  /*
-    const hdNode = HDNode.fromMnemonic(phrase).derivePath(path);
-    const key = hdNode.privateKey.slice(2)
-    const key_array = Uint8Array.from(Buffer.from(key, 'hex'));
-    console.log(`ethers privateKey: ${hdNode.privateKey}`);
-    console.log(`ethers seed: ${key_array}`);
-    const keypairs = Keypair.fromSecretKey(key_array);
-    store.publibKey = keypairs.publicKey;
-    store.secretKey = keypairs.secretKey;
-  */
-
   console.log(`pub: ${store.publibKey}, \nsec: ${store.secretKey}`);
+
+  // store to localStorage
+  saveToStorage(store);
+
+  loading.value = false;
 })
 
 
