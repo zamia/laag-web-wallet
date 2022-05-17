@@ -2,9 +2,25 @@
 import Header from '@/components/Header.vue';
 import Title from '@/components/Title.vue'
 import { Button, Field } from 'vant'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { LaagWallet } from '@/models/LaagWallet.js'
+import { usePhraseStore } from '@/store.js'
+import { useRouter } from 'vue-router'
 
+const router = useRouter();
+
+const store = usePhraseStore();
 let phrase = ref("");
+
+let ready = computed(() => {
+  return LaagWallet.isValidPhrase(phrase.value);
+});
+
+const importPhrase = async () => {
+  console.log(`prepare to importPhrase`);
+  store.phrase = phrase.value;
+  router.push("/wallets/done");
+}
 </script>
 
 <template>
@@ -22,7 +38,7 @@ let phrase = ref("");
     </div>
 
     <div class="import">
-      <Button type="primary" block class="import__button">Import</Button>
+      <Button type="primary" block :disabled="!ready" class="import__button" @click="importPhrase">Import</Button>
     </div>
   </div>
 

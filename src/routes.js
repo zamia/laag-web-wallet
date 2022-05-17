@@ -1,4 +1,5 @@
 import Home from "./views/Home.vue";
+import Start from "@/views/Start.vue";
 import About from "./views/About.vue";
 import NotFound from "./views/NotFound.vue";
 import EmptyRouterView from "./views/EmptyRouterView.vue";
@@ -9,7 +10,8 @@ import WalletsDone from "./views/wallets/Done.vue";
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
-  { path: "/", component: Home, meta: { title: "Home" } },
+  { path: "/", component: Start, meta: { title: "Home" } },
+  { path: "/home", component: Home, meta: { title: "Home" } },
   {
     path: "/about",
     meta: { title: "About" },

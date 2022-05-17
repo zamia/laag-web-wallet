@@ -3,40 +3,26 @@ import Header from '@/components/Header.vue'
 import { Button, Icon, Loading } from 'vant'
 import { ref, onMounted } from 'vue'
 import { usePhraseStore } from "@/store.js"
-import * as bip39 from '@scure/bip39'
-import { Keypair } from '@solana/web3.js'
-import { Buffer } from 'buffer'
-import { derivePathByApi } from '@/utils/misc.js'
-import { saveToStorage } from '@/utils/local_storage.js'
+import { LaagWallet } from '@/models/LaagWallet.js'
 
 let loading = ref(true);
 let error = ref(false);
 
 const store = usePhraseStore();
 const phrase = store.phrase;
+console.log(`Done: phrase: ${phrase}`);
 
 onMounted(async () => {
-  if (!phrase || phrase == "") {
+  if (!LaagWallet.isValidPhrase(phrase)) {
     error.value = true;
     return;
   }
 
-  const seed = bip39.mnemonicToSeedSync(phrase)
-  const seedHex = Buffer.from(seed).toString('hex');
-  console.log(`bip39 seed: ${seedHex}`);
-
-  const path = "m/44'/501'/0'/0'";
-  // const derivedSeedHex = ed.derivePath(path, seedHex).key.toString('hex');
-  const derivedSeedHex = await derivePathByApi(path, seedHex);
-
-  const derivedSeed = Buffer.from(derivedSeedHex, 'hex');
-  const keypairs = Keypair.fromSeed(derivedSeed);
-  store.publicKey = keypairs.publicKey;
-  store.secretKey = keypairs.secretKey;
-  console.log(`pub: ${store.publibKey}, \nsec: ${store.secretKey}`);
+  const wallet = await LaagWallet.initWallet(phrase);
 
   // store to localStorage
-  saveToStorage(store);
+  wallet.syncToStore(store);
+  wallet.saveToStorage();
 
   loading.value = false;
 })

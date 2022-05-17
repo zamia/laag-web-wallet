@@ -5,8 +5,9 @@ export const usePhraseStore = defineStore({
 
   state: () => ({
     phrase: "",
-    publibKey: "",
-    secretKey: "",
+    publicKey: "",
+    secretKey: [],
+    keypairs: null,
   }),
 
   getters: {
