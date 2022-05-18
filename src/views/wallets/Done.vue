@@ -1,9 +1,9 @@
 <script setup>
-import Header from '@/components/Header.vue'
+import { Header } from '@/components'
 import { Button, Icon, Loading } from 'vant'
 import { ref, onMounted } from 'vue'
 import { usePhraseStore } from "@/store.js"
-import { LaagWallet } from '@/models/LaagWallet.js'
+import { LaagWallet } from '@/models'
 
 let loading = ref(true);
 let error = ref(false);
@@ -25,9 +25,9 @@ onMounted(async () => {
   wallet.saveToStorage();
 
   loading.value = false;
+
+  console.log(`wallet pubkey: ${wallet.publicKey}`)
 })
-
-
 
 </script>
 

@@ -1,7 +1,6 @@
 <script setup>
 import { Button, Icon } from 'vant'
-import Header from '@/components/Header.vue'
-import Title from '@/components/Title.vue'
+import { Header, Title } from '@/components'
 import { ref, onMounted } from 'vue';
 import * as bip39 from '@scure/bip39'
 import { wordlist } from '@scure/bip39/wordlists/english';

@@ -1,6 +1,5 @@
 <script setup>
-import Header from '@/components/Header.vue';
-import Title from '@/components/Title.vue'
+import { Header } from '@/components';
 import { Button, Field } from 'vant'
 import { ref, computed } from 'vue'
 import { LaagWallet } from '@/models/LaagWallet.js'

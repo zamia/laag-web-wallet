@@ -5,7 +5,6 @@ import { routes } from "./routes.js";
 import { createRouter, createWebHistory } from "vue-router";
 import { createPinia } from "pinia";
 import "@/utils/misc.js";
-import "@/utils/polyfils.js";
 
 const app = createApp(App);
 

@@ -1,7 +1,6 @@
 <script setup>
 import { Button, Icon, Radio, RadioGroup } from 'vant';
-import Header from '@/components/Header.vue';
-import Title from '@/components/Title.vue';
+import { Header, Title } from '@/components'
 import { ref, onMounted, computed } from "vue";
 import { usePhraseStore } from "@/store.js"
 

@@ -1,15 +1,13 @@
 <script setup>
-import { LaagWallet } from '@/models/LaagWallet.js'
+import { LaagWallet } from '@/models'
 import { useRouter } from 'vue-router'
-import { usePhraseStore } from '@/store.js'
+import { useStorageStore } from '@/composables'
 
 const router = useRouter();
-const store = usePhraseStore();
-const wallet = LaagWallet.loadFromStorage();
-console.log(wallet);
+const { store } = useStorageStore();
+console.log(`store: ${store}`);
 
-if (wallet && wallet.phrase && LaagWallet.isValidPhrase(wallet.phrase)) {
-  wallet.syncToStore(store);
+if (store && store.phrase && LaagWallet.isValidPhrase(store.phrase)) {
   router.push("/assets")
 } else {
   router.push("/home")

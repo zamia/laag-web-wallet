@@ -7,6 +7,7 @@ import WalletsNew from "./views/wallets/New.vue";
 import WalletsImport from "./views/wallets/Import.vue";
 import WalletsVerify from "./views/wallets/Verify.vue";
 import WalletsDone from "./views/wallets/Done.vue";
+import Assets from "./views/Assets.vue";
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
@@ -27,6 +28,8 @@ export const routes = [
       { path: "done", component: WalletsDone },
     ],
   },
+
+  { path: "/assets", component: Assets },
 
   { path: "/:path(.*)", component: NotFound },
 ];
