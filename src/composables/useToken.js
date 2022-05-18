@@ -1,6 +1,6 @@
 import { ref, computed } from "vue";
 
-export function useToken() {
+export function useToken(symbol) {
   const amount = ref(0);
   const price = ref(0.0);
 

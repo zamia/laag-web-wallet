@@ -6,6 +6,7 @@ specifiers:
   '@heroicons/vue': ^1.0.6
   '@scure/bip39': ^1.0.0
   '@solana/spl-token': ^0.2.0
+  '@solana/spl-token-registry': ^0.2.4013
   '@solana/web3.js': ^1.42.0
   '@tailwindcss/aspect-ratio': ^0.4.0
   '@tailwindcss/forms': ^0.5.1
@@ -30,9 +31,9 @@ specifiers:
   vue-router: ^4.0.15
 
 dependencies:
-  '@esbuild-plugins/node-globals-polyfill': 0.1.1
   '@scure/bip39': 1.0.0
   '@solana/spl-token': 0.2.0
+  '@solana/spl-token-registry': 0.2.4013
   '@solana/web3.js': 1.42.0
   axios: 0.27.2
   buffer: 6.0.3
@@ -42,6 +43,7 @@ dependencies:
   vue-router: 4.0.15_vue@3.2.33
 
 devDependencies:
+  '@esbuild-plugins/node-globals-polyfill': 0.1.1
   '@headlessui/vue': 1.6.1_vue@3.2.33
   '@heroicons/vue': 1.0.6_vue@3.2.33
   '@tailwindcss/aspect-ratio': 0.4.0_tailwindcss@3.0.24
@@ -94,7 +96,7 @@ packages:
     resolution: {integrity: sha512-MR0oAA+mlnJWrt1RQVQ+4VYuRJW/P2YmRTv1AsplObyvuBMnPHiizUF95HHYiSsMGLhyGtWufaq2XQg6+iurBg==}
     peerDependencies:
       esbuild: '*'
-    dev: false
+    dev: true
 
   /@ethersproject/bytes/5.6.1:
     resolution: {integrity: sha512-NwQt7cKn5+ZE4uDn+X5RAXLp46E1chXoaMmrxAyA0rblpxz8t58lVkrHXoRIn0lz1joQElQ8410GqhTqMOwc6g==}
@@ -222,6 +224,13 @@ packages:
     engines: {node: '>=5.10'}
     dependencies:
       buffer: 6.0.3
+    dev: false
+
+  /@solana/spl-token-registry/0.2.4013:
+    resolution: {integrity: sha512-eNFWoODlGMdDqyxQ6yxV+c/b5z0XV5UTFWOcgI4KHI3I2X/b3SERYIfjiu+q0F4zSoYjPuOJUu606SsiVseb1Q==}
+    engines: {node: '>=10'}
+    dependencies:
+      cross-fetch: 3.0.6
     dev: false
 
   /@solana/spl-token/0.2.0:
@@ -721,6 +730,12 @@ packages:
       tslib: 2.4.0
       upper-case: 2.0.2
     dev: true
+
+  /cross-fetch/3.0.6:
+    resolution: {integrity: sha512-KBPUbqgFjzWlVcURG+Svp9TlhA5uliYtiNx/0r8nv0pdypeQCRJ9IaSIc3q/x3q8t3F75cHuwxVql1HFGHCNJQ==}
+    dependencies:
+      node-fetch: 2.6.1
+    dev: false
 
   /cross-fetch/3.1.5:
     resolution: {integrity: sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==}
@@ -1458,6 +1473,11 @@ packages:
 
   /node-addon-api/2.0.2:
     resolution: {integrity: sha512-Ntyt4AIXyaLIuMHF6IOoTakB3K+RWxwtsHNRxllEoA6vPwP9o4866g6YWDLUdnucilZhmkxiHwHr11gAENw+QA==}
+    dev: false
+
+  /node-fetch/2.6.1:
+    resolution: {integrity: sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==}
+    engines: {node: 4.x || >=6.0.0}
     dev: false
 
   /node-fetch/2.6.7:
