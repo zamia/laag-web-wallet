@@ -47,9 +47,9 @@ onMounted(async () => {
     </div>
   </div>
   <div class="cmds">
-    <IconLink href="/assets/send" icon="share-o" text="Send" class="cmds__item" />
-    <IconLink href="/assets/receive" icon="down" text="Receive" class="cmds__item" />
-    <IconLink href="/assets/swap" icon="exchange" text="Swap" class="cmds__item" />
+    <IconLink href="/tokens/send" icon="share-o" text="Send" class="cmds__item" />
+    <IconLink href="/tokens/receive" icon="down" text="Receive" class="cmds__item" />
+    <IconLink href="/tokens/swap" icon="exchange" text="Swap" class="cmds__item" />
   </div>
   <div class="tokens">
     <div class="tokens__title">Token List</div>

@@ -23,10 +23,7 @@ const tokens = [sol_token, usdc_token];
     <span>Enter Recipient:</span>
   </div>
   <div class="cmds">
-    <Button type="primary">Send</Button>
-    Gtest Good
-    Gtest Good
-    Gtest Good
+    <Button type="primary" block>Send</Button>
   </div>
   <div class="note">
     <span>Note:</span>

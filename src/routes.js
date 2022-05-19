@@ -7,10 +7,10 @@ import WalletsNew from "./views/wallets/New.vue";
 import WalletsImport from "./views/wallets/Import.vue";
 import WalletsVerify from "./views/wallets/Verify.vue";
 import WalletsDone from "./views/wallets/Done.vue";
-import TokensHome from "./views/Tokens/Home.vue";
-import TokensSend from "./views/Tokens/Send.vue";
-import TokensReceive from "./views/Tokens/Receive.vue";
-import TokensSwap from "./views/Tokens/Swap.vue";
+import TokensHome from "./views/tokens/Home.vue";
+import TokensSend from "./views/tokens/Send.vue";
+import TokensReceive from "./views/tokens/Receive.vue";
+import TokensSwap from "./views/tokens/Swap.vue";
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
