@@ -1,8 +1,7 @@
 <script setup>
-import { Button, Icon, Radio, RadioGroup } from 'vant';
-import { Header, Title } from '@/components'
 import { ref, onMounted, computed } from "vue";
 import { usePhraseStore } from "@/store.js"
+import { RadioGroup as VanRadioGroup, Radio as VanRadio, Button as VanButton } from 'vant'
 
 let user_choices_q1 = ref("");
 let user_choices_q2 = ref("");
@@ -38,11 +37,11 @@ const select_correct = computed(() => {
       please select the 3rd word of recovery phrase:
     </div>
     <div class="question__options">
-      <RadioGroup v-model="user_choices_q1" direction="horizontal">
+      <VanRadioGroup v-model="user_choices_q1" direction="horizontal">
         <div v-for="w in q1_answers" :key="w">
-          <Radio :name="w">{{ w }}</Radio>
+          <VanRadio :name="w">{{ w }}</VanRadio>
         </div>
-      </RadioGroup>
+      </VanRadioGroup>
     </div>
   </div>
 
@@ -51,16 +50,16 @@ const select_correct = computed(() => {
       please select the 7th word of recovery phrase:
     </div>
     <div class="question__options">
-      <RadioGroup v-model="user_choices_q2" direction="horizontal">
+      <VanRadioGroup v-model="user_choices_q2" direction="horizontal">
         <div v-for="w in q2_answers" :key="w">
-          <Radio :name="w">{{ w }}</Radio>
+          <VanRadio :name="w">{{ w }}</VanRadio>
         </div>
-      </RadioGroup>
+      </VanRadioGroup>
     </div>
   </div>
 
   <div class="commands">
-    <Button type="primary" :disabled="!select_correct" block to="/wallets/done">Continue</Button>
+    <VanButton type="primary" :disabled="!select_correct" block to="/wallets/done">Continue</VanButton>
   </div>
 </template>
 

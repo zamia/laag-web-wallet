@@ -1,5 +1,6 @@
 <script setup>
 import { Icon } from 'vant'
+
 const props = defineProps(["href", "icon", "text", "icon-size"])
 
 let icon_size = props["iconSize"]

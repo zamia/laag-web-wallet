@@ -1,5 +1,5 @@
 <script setup>
-import { Icon } from 'vant';
+import { Icon } from 'vant'
 </script>
 
 <template>

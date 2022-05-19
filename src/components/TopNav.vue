@@ -1,7 +1,5 @@
 <script setup>
-import { Icon } from 'vant';
-import { RouterLink } from 'vue-router';
-
+import { Icon } from 'vant'
 </script>
 
 <template>

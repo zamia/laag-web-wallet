@@ -1,19 +1,21 @@
 <script setup>
-import { Button, Icon } from 'vant'
+import { Icon as VanIcon, Button as VanButton } from 'vant'
 </script>
 
 <template>
   <div class="welcome">
     <div class="logo">
-      <Icon name="fire" class="text-purple-600" size="48"></Icon>
+      <VanIcon name="fire" class="text-purple-600" size="48"></VanIcon>
+      <VanIcon name="fire" class="text-purple-600" size="48"></VanIcon>
+      <VanIcon name="fire" class="text-purple-600" size="48"></VanIcon>
     </div>
     <div class="brand">LaaG Wallet</div>
     <div class="slogon">Connect Crypto World to Reality</div>
   </div>
 
   <div class="actions">
-    <Button type="primary" block to="/wallets/new">Create New Wallet</Button>
-    <Button type="default" block to="/wallets/import">Import existing Wallet</Button>
+    <VanButton type="primary" block to="/wallets/new">Create New Wallet</VanButton>
+    <VanButton type="default" block to="/wallets/import">Import existing Wallet</VanButton>
   </div>
 </template>
 

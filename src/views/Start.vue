@@ -8,7 +8,7 @@ const { store } = useStorageStore();
 console.log(`store: ${store}`);
 
 if (store && store.phrase && LaagWallet.isValidPhrase(store.phrase)) {
-  router.push("/assets")
+  router.push("/tokens")
 } else {
   router.push("/home")
 }

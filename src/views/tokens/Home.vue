@@ -1,10 +1,9 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
-import { Icon } from 'vant'
-import { TopNav, MainNav, IconLink } from "@/components"
 import { useToken, useStorageStore } from '@/composables'
 import { PublicKey, clusterApiUrl, Connection, LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { USDCMintAddress, getSplTokenAmount, formatMoney, formatAmount } from '@/utils';
+import { TopNav, MainNav, IconLink } from '@/components';
 
 import IconSol from '@/assets/icon-sol.png'
 import IconUsdc from '@/assets/icon-usdc.png'
@@ -14,45 +13,27 @@ const pubkey = new PublicKey(store.publicKey);
 const usdc_mint = new PublicKey(USDCMintAddress);
 console.log(`pubkey: ${pubkey}`);
 
-const { amount: sol_amount, price: sol_price, total: sol_total } = useToken();
-const { amount: usdc_amount, price: usdc_price, total: usdc_total } = useToken();
-const assets_total = computed(() => sol_total.value + usdc_total.value);
+const sol_token = useToken('SOL', "Solana", IconSol);
+const usdc_token = useToken('USDC', "USD Coin", IconUsdc);
+const tokens = [sol_token, usdc_token];
+const assets_total = computed(() => sol_token.total.value + usdc_token.total.value);
 
 const view_activity_url = `https://solscan.io/account/${store.publicKey}`;
 
-const tokens = ref([
-  {
-    symbol: 'SOL',
-    name: 'Solana',
-    icon: IconSol,
-    amount: sol_amount,
-    total: sol_total,
-  },
-  {
-    symbol: 'USDC',
-    name: 'USD Coin',
-    icon: IconUsdc,
-    amount: usdc_amount,
-    total: usdc_total,
-  }
-])
-
 onMounted(async () => {
-  //get sol price
-  sol_price.value = 56.03;
-
-  // get usdc price
-  usdc_price.value = 1.00;
+  //get&set token price
+  sol_token.price.value = 56.03;
+  usdc_token.price.value = 1.00;
 
   let connection = new Connection(clusterApiUrl('mainnet-beta'), 'confirmed');
 
   // get sol amount
   const lamports = await connection.getBalance(pubkey)
-  tokens.value[0].amount = lamports / LAMPORTS_PER_SOL;
+  sol_token.amount.value = lamports / LAMPORTS_PER_SOL;
 
   // get usdc amount
   const amount = await getSplTokenAmount(connection, pubkey, usdc_mint);
-  tokens.value[1].amount = Number(amount) / 1e6;
+  usdc_token.amount.value = Number(amount) / 1e6;
 })
 
 </script>
@@ -66,9 +47,9 @@ onMounted(async () => {
     </div>
   </div>
   <div class="cmds">
-    <IconLink href="/home" icon="share-o" text="Send" class="cmds__item" />
-    <IconLink href="/home" icon="down" text="Receive" class="cmds__item" />
-    <IconLink href="/home" icon="exchange" text="Swap" class="cmds__item" />
+    <IconLink href="/assets/send" icon="share-o" text="Send" class="cmds__item" />
+    <IconLink href="/assets/receive" icon="down" text="Receive" class="cmds__item" />
+    <IconLink href="/assets/swap" icon="exchange" text="Swap" class="cmds__item" />
   </div>
   <div class="tokens">
     <div class="tokens__title">Token List</div>
@@ -81,8 +62,8 @@ onMounted(async () => {
         <span>{{ token.name }}</span>
       </div>
       <div class="token__value">
-        <span class="money">$ {{ formatMoney(token.total) }}</span>
-        <span>{{ formatAmount(token.amount) }}</span>
+        <span class="money">$ {{ formatMoney(token.total.value) }}</span>
+        <span>{{ formatAmount(token.amount.value) }}</span>
       </div>
     </div>
   </div>

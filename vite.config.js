@@ -5,9 +5,7 @@ import styleImport, { VantResolve } from "vite-plugin-style-import";
 import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill";
 
 export default defineConfig({
-  define: {
-    global: {},
-  },
+  define: {},
   plugins: [
     vue(),
     styleImport({

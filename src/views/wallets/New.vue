@@ -1,10 +1,9 @@
 <script setup>
-import { Button, Icon } from 'vant'
-import { Header, Title } from '@/components'
 import { ref, onMounted } from 'vue';
 import * as bip39 from '@scure/bip39'
 import { wordlist } from '@scure/bip39/wordlists/english';
 import { usePhraseStore } from '@/store.js'
+import { Icon, Button } from 'vant'
 
 const store = usePhraseStore()
 
@@ -14,7 +13,6 @@ onMounted(() => {
     console.log(`phrase: ${store.phrase}`);
   }
 })
-
 </script>
 
 <template>

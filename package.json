@@ -1,6 +1,6 @@
 {
-  "name": "vite-vue3-tailwind-starter",
-  "version": "0.0.0",
+  "name": "laag-web-wallet",
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
@@ -30,6 +30,7 @@
     "@vitejs/plugin-vue": "^2.3.2",
     "autoprefixer": "^10.4.7",
     "consola": "^2.15.3",
+    "esbuild": ">=0.13.0",
     "postcss": "^8.4.13",
     "prettier": "^2.6.2",
     "prettier-plugin-tailwindcss": "^0.1.10",

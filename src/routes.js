@@ -7,7 +7,10 @@ import WalletsNew from "./views/wallets/New.vue";
 import WalletsImport from "./views/wallets/Import.vue";
 import WalletsVerify from "./views/wallets/Verify.vue";
 import WalletsDone from "./views/wallets/Done.vue";
-import Assets from "./views/Assets.vue";
+import TokensHome from "./views/Tokens/Home.vue";
+import TokensSend from "./views/Tokens/Send.vue";
+import TokensReceive from "./views/Tokens/Receive.vue";
+import TokensSwap from "./views/Tokens/Swap.vue";
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
@@ -29,7 +32,16 @@ export const routes = [
     ],
   },
 
-  { path: "/assets", component: Assets },
+  {
+    path: "/tokens",
+    component: EmptyRouterView,
+    children: [
+      { path: "", component: TokensHome },
+      { path: "send", component: TokensSend },
+      { path: "receive", component: TokensReceive },
+      { path: "swap", component: TokensSwap },
+    ],
+  },
 
   { path: "/:path(.*)", component: NotFound },
 ];

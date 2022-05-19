@@ -1,9 +1,8 @@
 <script setup>
-import { Header } from '@/components'
-import { Button, Icon, Loading } from 'vant'
 import { ref, onMounted } from 'vue'
 import { usePhraseStore } from "@/store.js"
 import { LaagWallet } from '@/models'
+import { Loading, Icon } from 'vant'
 
 let loading = ref(true);
 let error = ref(false);

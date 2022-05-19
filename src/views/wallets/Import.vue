@@ -1,10 +1,9 @@
 <script setup>
-import { Header } from '@/components';
-import { Button, Field } from 'vant'
 import { ref, computed } from 'vue'
-import { LaagWallet } from '@/models/LaagWallet.js'
+import { LaagWallet } from '@/models'
 import { usePhraseStore } from '@/store.js'
 import { useRouter } from 'vue-router'
+import { Field, Button } from 'vant'
 
 const router = useRouter();
 
