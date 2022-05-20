@@ -4,8 +4,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "serve": "vite preview",
-    "postinstall": "patch-package"
+    "serve": "vite preview"
   },
   "dependencies": {
     "@scure/bip39": "^1.0.0",
@@ -13,9 +12,12 @@
     "@solana/spl-token-registry": "^0.2.4041",
     "@solana/web3.js": "^1.43.0",
     "axios": "^0.27.2",
+    "decimal.js": "^10.3.1",
+    "http": "0.0.1-security",
     "pinia": "^2.0.14",
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
+    "url": "^0.11.0",
     "util": "^0.12.4",
     "vant": "^3.4.9",
     "vue": "^3.2.34",
@@ -25,7 +27,6 @@
     "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
     "@headlessui/vue": "^1.6.2",
     "@heroicons/vue": "^1.0.6",
-    "@milahu/patch-package-with-pnpm-support": "^6.4.10",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/line-clamp": "^0.4.0",
