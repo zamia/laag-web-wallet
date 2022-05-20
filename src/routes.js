@@ -9,6 +9,7 @@ import WalletsVerify from "./views/wallets/Verify.vue";
 import WalletsDone from "./views/wallets/Done.vue";
 import TokensHome from "./views/tokens/Home.vue";
 import TokensSend from "./views/tokens/Send.vue";
+import TokensSendPreview from "./views/tokens/SendPreview.vue";
 import TokensReceive from "./views/tokens/Receive.vue";
 import TokensSwap from "./views/tokens/Swap.vue";
 
@@ -38,6 +39,12 @@ export const routes = [
     children: [
       { path: "", component: TokensHome },
       { path: "send", component: TokensSend },
+      {
+        path: "preview",
+        component: TokensSendPreview,
+        name: "preview",
+        props: (route) => ({ ...route.query }),
+      },
       { path: "receive", component: TokensReceive },
       { path: "swap", component: TokensSwap },
     ],
