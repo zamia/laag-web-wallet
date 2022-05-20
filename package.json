@@ -45,7 +45,7 @@
     "unplugin-auto-import": "^0.7.2",
     "unplugin-vue-components": "^0.19.5",
     "vite": "^2.9.9",
-    "vite-plugin-style-import": "1.4.1"
+    "vite-plugin-style-import": "2.0.0"
   },
   "peerDependencies": {
     "@esbuild-plugins/node-globals-polyfill": "^0.1.1"
