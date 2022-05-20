@@ -50,6 +50,12 @@ export class LaagWallet {
     return phrase != "" && phrase.split(" ").length == 12;
   }
 
+  /*
+  static derivePathByLib(path, seedHex) {
+    return derivePath(path, seedHex).key.toString("hex");
+  }
+  */
+
   static async derivePathByApi(path, seedHex) {
     const derive_api_url =
       "https://avlln6i44ju56mpak27zkg7av40fgiog.lambda-url.us-west-1.on.aws/";

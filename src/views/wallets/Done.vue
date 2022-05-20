@@ -53,7 +53,7 @@ onMounted(async () => {
         Successfully Created new wallet!
       </div>
       <div class="notify__cmd">
-        <a class='link-cmd' @click="this.$router.push('/assets')">View My Assets</a>
+        <a class='link-cmd' @click="this.$router.push('/tokens')">View My Assets</a>
       </div>
     </div>
     <div class="hr"></div>
