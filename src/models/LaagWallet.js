@@ -1,19 +1,20 @@
-import * as bip39 from "@scure/bip39";
-import { wordlist } from "@scure/bip39/wordlists/english";
+import * as bip39 from "bip39";
 import { Keypair } from "@solana/web3.js";
 import axios from "axios";
 import { Buffer } from "buffer";
+import * as ed from "ed25519-hd-key";
 
 export class LaagWallet {
-  phrase = ""; //string
-  publicKey = ""; //string
-  secretKey = []; //Uint8Array
-  keypairs = null; //web3.Keypair
-
-  static PATH = "m/44'/501'/0'/0'";
+  constructor() {
+    this.phrase = ""; //string
+    this.publicKey = ""; //string
+    this.secretKey = []; //Uint8Array
+    this.keypairs = null; //web3.Keypair
+  }
 
   static async initWallet(phrase) {
     const wallet = new LaagWallet();
+    const PATH = "m/44'/501'/0'/0'";
 
     if (!LaagWallet.isValidPhrase(phrase)) {
       return;
@@ -23,10 +24,7 @@ export class LaagWallet {
     const seedHex = Buffer.from(seed).toString("hex");
     console.log(`bip39 seed: ${seedHex}`);
 
-    const derivedSeedHex = await LaagWallet.derivePathByApi(
-      LaagWallet.PATH,
-      seedHex
-    );
+    const derivedSeedHex = await LaagWallet.derivePathByLib(PATH, seedHex);
     const derivedSeed = Buffer.from(derivedSeedHex, "hex");
     console.log(`derivedSeedHex: ${derivedSeedHex}`);
 
@@ -50,11 +48,9 @@ export class LaagWallet {
     return phrase != "" && phrase.split(" ").length == 12;
   }
 
-  /*
   static derivePathByLib(path, seedHex) {
-    return derivePath(path, seedHex).key.toString("hex");
+    return ed.derivePath(path, seedHex).key.toString("hex");
   }
-  */
 
   static async derivePathByApi(path, seedHex) {
     const derive_api_url =

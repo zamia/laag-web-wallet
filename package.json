@@ -2,29 +2,30 @@
   "name": "laag-web-wallet",
   "version": "0.1.0",
   "scripts": {
-    "dev": "vite --host",
-    "build": "vite build",
-    "serve": "vite preview"
+    "dev": "vue-cli-service serve",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@scure/bip39": "^1.0.0",
+    "@orca-so/sdk": "^1.2.24",
     "@solana/spl-token": "^0.2.0",
     "@solana/spl-token-registry": "^0.2.4041",
     "@solana/web3.js": "^1.43.0",
     "axios": "^0.27.2",
+    "bip39": "^3.0.4",
+    "core-js": "^3.8.3",
     "decimal.js": "^10.3.1",
-    "http": "0.0.1-security",
+    "ed25519-hd-key": "^1.2.0",
     "pinia": "^2.0.14",
-    "process": "^0.11.10",
-    "stream-browserify": "^3.0.0",
-    "url": "^0.11.0",
-    "util": "^0.12.4",
     "vant": "^3.4.9",
     "vue": "^3.2.34",
-    "vue-router": "^4.0.15"
+    "vue-router": "^4.0.15",
+    "webpack": "^5.72.1"
   },
   "devDependencies": {
-    "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
     "@headlessui/vue": "^1.6.2",
     "@heroicons/vue": "^1.0.6",
     "@tailwindcss/aspect-ratio": "^0.4.0",
@@ -32,22 +33,43 @@
     "@tailwindcss/line-clamp": "^0.4.0",
     "@tailwindcss/typography": "^0.5.2",
     "@types/tailwindcss": "^3.0.10",
-    "@vitejs/plugin-vue": "^2.3.3",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
     "autoprefixer": "^10.4.7",
-    "buffer": "^6.0.3",
+    "babel-plugin-import": "^1.13.5",
     "consola": "^2.15.3",
-    "esbuild": "^0.14.39",
+    "eslint": "^8.16.0",
+    "eslint-plugin-vue": "^9.0.1",
+    "node-polyfill-webpack-plugin": "^1.1.4",
     "postcss": "^8.4.14",
     "prettier": "^2.6.2",
     "prettier-plugin-tailwindcss": "^0.1.11",
     "sass": "^1.52.0",
+    "sass-loader": "^13.0.0",
+    "style-resources-loader": "^1.5.0",
     "tailwindcss": "^3.0.24",
     "unplugin-auto-import": "^0.7.2",
-    "unplugin-vue-components": "^0.19.5",
-    "vite": "^2.9.9",
-    "vite-plugin-style-import": "1.4.1"
+    "unplugin-vue-components": "^0.19.5"
   },
-  "peerDependencies": {
-    "@esbuild-plugins/node-globals-polyfill": "^0.1.1"
-  }
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
 }

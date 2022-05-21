@@ -56,7 +56,7 @@ onMounted(() => {
   </div>
   <div class="tokens">
     <div class="tokens__title">Token List</div>
-    <div v-for="token in tokens" class="tokens__item token" :id="token.symbol">
+    <div v-for="token in tokens" class="tokens__item token" :key="token.symbol">
       <div class="token__icon">
         <img :src="token.icon" :title="token.name" />
       </div>

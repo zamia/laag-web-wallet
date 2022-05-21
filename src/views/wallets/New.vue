@@ -1,7 +1,6 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import * as bip39 from '@scure/bip39'
-import { wordlist } from '@scure/bip39/wordlists/english';
+import { onMounted } from 'vue';
+import * as bip39 from 'bip39'
 import { usePhraseStore } from '@/store.js'
 import { Icon, Button } from 'vant'
 
@@ -9,7 +8,7 @@ const store = usePhraseStore()
 
 onMounted(() => {
   if (!store.phrase || store.phrase == "") {
-    store.phrase = bip39.generateMnemonic(wordlist);
+    store.phrase = bip39.generateMnemonic();
     console.log(`phrase: ${store.phrase}`);
   }
 })
