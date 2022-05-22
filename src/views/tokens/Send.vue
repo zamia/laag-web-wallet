@@ -1,6 +1,5 @@
 <script setup>
 import { PresetTokenList, formatMoney, isValidAddress } from '@/utils'
-import SendPreview from '@/components/SendPreview.vue'
 
 const tokenSelectedIndex = ref(0);
 const currentAmount = ref(0);
@@ -13,8 +12,8 @@ const isSendReady = computed(() => Number(currentAmount.value) > 0.0 && isValidA
 const router = useRouter();
 const finishSendTx = () => {
   router.push({
-    path: "/tokens/send-submit",
-    query: {
+    name: "SendSubmit",
+    params: {
       token: tokenSelected.value.symbol,
       amount: currentAmount.value,
       recipient: recipientAddress.value,
@@ -61,7 +60,7 @@ const previewModalShowing = ref(false);
     <div class="review-modal__content">
       <SendPreview :token="tokenSelected.symbol" :amount="currentAmount" :recipient="recipientAddress" />
       <div class="review-modal__cmd">
-        <VanButton type="primary" block @click="finishSendTx" :loading="sending">Confirm Send</VanButton>
+        <VanButton type="primary" block @click="finishSendTx">Confirm Send</VanButton>
       </div>
     </div>
   </VanActionSheet>

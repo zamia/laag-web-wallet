@@ -40,9 +40,11 @@ export const routes = [
       { path: "", component: TokensHome },
       { path: "send", component: TokensSend },
       {
+        name: "SendSubmit",
         path: "send-submit",
         component: TokensSendSubmit,
-        props: (route) => route.query,
+        // props:(route) => route.query,
+        props: true,
       },
       { path: "receive", component: TokensReceive },
       { path: "swap", component: TokensSwap },
