@@ -1,32 +1,19 @@
 <script setup>
 import { PresetTokenList, formatMoney, isValidAddress } from '@/utils'
+import SendPreview from '@/components/SendPreview.vue'
 
-const tokens = PresetTokenList;
 const tokenSelectedIndex = ref(0);
-const tokenSelected = computed(() => tokens[tokenSelectedIndex.value]);
-
-/* for token select model*/
-console.log(tokenSelected.value);
-const tokenModelShow = ref(false);
-const tokenModelOptions = tokens.map((t) => ({ symbol: t.symbol, name: `${t.symbol} - ${t.name}` }));
-const tokenModelOnSelect = (item) => {
-  tokenSelectedIndex.value = tokens.findIndex((t) => t.symbol == item.symbol);
-  tokenModelShow.value = false;
-  console.log(tokenSelected);
-}
-
 const currentAmount = ref(0);
-const currentTotal = computed(() => Number(currentAmount.value) * Number(tokenSelected.value.price))
-
 const recipientAddress = ref("");
 
+const tokenSelected = computed(() => PresetTokenList[tokenSelectedIndex.value]);
+const currentTotal = computed(() => Number(currentAmount.value) * Number(tokenSelected.value.price))
 const isSendReady = computed(() => Number(currentAmount.value) > 0.0 && isValidAddress(recipientAddress.value));
 
-
 const router = useRouter();
-const previewTx = () => {
+const finishSendTx = () => {
   router.push({
-    path: "/tokens/preview",
+    path: "/tokens/send-submit",
     query: {
       token: tokenSelected.value.symbol,
       amount: currentAmount.value,
@@ -35,23 +22,17 @@ const previewTx = () => {
   })
 }
 
+const previewModalShowing = ref(false);
+
 </script>
 
 <template>
   <Header>Send Token</Header>
   <div class="choose-token">
-    <div>Sending Token:</div>
-    <IconLink href="" :icon="tokenSelected.icon" icon-size="3rem">
-      <span class="token-name">{{ tokenSelected.symbol }}</span>
-      <span class="token-desc">{{ tokenSelected.name }}</span>
-    </IconLink>
-    <a class="choose-token__select" @click="tokenModelShow = true">
-      <VanIcon name="arrow-down"></VanIcon>
-    </a>
-    <VanActionSheet v-model:show="tokenModelShow" :actions="tokenModelOptions" @select="tokenModelOnSelect"
-      cancel-text="Cancel" description="Select Sending Token" close-on-click-action>
-    </VanActionSheet>
+    <div class="choose-token__title">Sending Token:</div>
+    <TokenSelect v-model="tokenSelectedIndex"></TokenSelect>
   </div>
+
   <div class="amount">
     <span>Enter Amount:</span>
     <VanCellGroup class="amount__input">
@@ -66,7 +47,7 @@ const previewTx = () => {
     </VanCellGroup>
   </div>
   <div class="cmds">
-    <VanButton type="primary" block :disabled="!isSendReady" @click="previewTx">Send</VanButton>
+    <VanButton type="primary" block :disabled="!isSendReady" @click="previewModalShowing = true">Send</VanButton>
   </div>
   <div class="note">
     <span>Note:</span>
@@ -76,22 +57,24 @@ const previewTx = () => {
     </ul>
   </div>
 
+  <VanActionSheet v-model:show="previewModalShowing" title="Preview Send Transaction" class="review-modal">
+    <div class="review-modal__content">
+      <SendPreview :token="tokenSelected.symbol" :amount="currentAmount" :recipient="recipientAddress" />
+      <div class="review-modal__cmd">
+        <VanButton type="primary" block @click="finishSendTx" :loading="sending">Confirm Send</VanButton>
+      </div>
+    </div>
+  </VanActionSheet>
+
 </template>
 
 <style scoped lang="scss">
 .choose-token {
+  margin-top: 3rem;
   text-align: center;
-  margin-top: 2rem;
-  position: relative;
 
-  .choose-token__select {
-    position: absolute;
-    top: 2rem;
-    right: 50%;
-    margin-right: -100px;
-    width: 3rem;
-    height: 3rem;
-    padding: 1rem;
+  .choose-token__title {
+    margin-bottom: 0.5rem;
   }
 }
 
@@ -131,12 +114,9 @@ const previewTx = () => {
   }
 }
 
-.token-name {
-  font-size: 1.2rem;
-}
-
-.token-desc {
-  padding-left: 0.5rem;
-  color: $color-gray;
+.review-modal {
+  .review-modal__content {
+    padding: 2rem;
+  }
 }
 </style>

@@ -1,11 +1,14 @@
 const { defineConfig } = require("@vue/cli-service");
 const NodePolyFillPlugin = require("node-polyfill-webpack-plugin");
-const path = require("path");
 const { VantResolver } = require("unplugin-vue-components/resolvers");
+const path = require("path");
 
 module.exports = defineConfig({
   transpileDependencies: true,
   configureWebpack: {
+    resolve: {
+      alias: {},
+    },
     plugins: [
       require("unplugin-auto-import/webpack")({
         include: [
