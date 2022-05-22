@@ -2,7 +2,9 @@
 import { useStorageStore } from '@/composables'
 import { PublicKey, clusterApiUrl, Connection, LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { USDCMintAddress, PresetTokenList, getSplTokenAmount, formatMoney, formatAmount } from '@/utils';
+import { useAmountStore } from '@/store.js';
 
+const amountStore = useAmountStore();
 const { store } = useStorageStore();
 const pubkey = new PublicKey(store.publicKey);
 const usdc_mint = new PublicKey(USDCMintAddress);
@@ -25,6 +27,9 @@ onMounted(() => {
         token.amount = lamports / LAMPORTS_PER_SOL;
         token.price = 56.30;
         token.total = Number(token.amount) * Number(token.price);
+
+        // TODO: set store
+
         break;
 
       case 'USDC':
@@ -36,6 +41,7 @@ onMounted(() => {
         break;
     }
 
+    amountStore.setTokenAmount(token.symbol, token.amount);
   });
 })
 

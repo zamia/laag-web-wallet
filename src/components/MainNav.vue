@@ -3,7 +3,7 @@ import IconLink from './IconLink.vue'
 </script>
 <template>
   <div class="main-nav">
-    <IconLink href="/assets" icon="paid" icon-size="1.5rem" text="Assets" class="main-nav__item"></IconLink>
+    <IconLink href="/tokens" icon="paid" icon-size="1.5rem" text="Assets" class="main-nav__item"></IconLink>
     <IconLink href="/swap" icon="exchange" icon-size="1.5rem" text="Swap" class="main-nav__item"></IconLink>
     <IconLink href="/services" icon="shop-o" icon-size="1.5rem" text="Service" class="main-nav__item"></IconLink>
   </div>

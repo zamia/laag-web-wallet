@@ -47,7 +47,7 @@ export const routes = [
         props: true,
       },
       { path: "receive", component: TokensReceive },
-      { path: "swap", component: TokensSwap },
+      { path: "swap", component: TokensSwap, alias: "/swap" },
     ],
   },
 

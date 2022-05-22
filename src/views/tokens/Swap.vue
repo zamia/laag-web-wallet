@@ -1,40 +1,51 @@
 <script setup>
-
 import { useStorageStore } from '@/composables';
-import { Connection, clusterApiUrl } from '@solana/web3.js';
-import { getOrca, OrcaPoolConfig } from '@orca-so/sdk';
-import { Decimal } from 'decimal.js';
+import { useAmountStore } from '@/store.js';
+import { LaagToken } from '@/models/'
 
+const amountStore = useAmountStore();
 const { store } = useStorageStore();
 console.log(store);
+
+const swapPair = ref(['SOL', 'USDC']);
+const swapAmount = ref(0.0);
+
+const fromToken = computed(() => swapPair.value.at(0));
+const toToken = computed(() => swapPair.value.at(1));
+const fromTokenOwnedAmount = computed(() => amountStore.getTokenAmount(fromToken.value));
+const convertRate = computed(() => LaagToken.getPrice(fromToken.value) / LaagToken.getPrice(toToken.value));
+const convertAmount = computed(() => swapAmount.value * convertRate.value);
 
 onMounted(async () => {
 
   const keypair = store.keypairs;
   console.log(`pubkey: ${keypair.publicKey}, seckey: ${keypair.secretKey}`);
 
-  const connection = new Connection(clusterApiUrl('mainnet-beta'), "singleGossip");
-  const orca = getOrca(connection);
-
-  // test swap 0.1 sol for USDC
-  try {
-    const orcaPool = orca.getPool(OrcaPoolConfig.SOL_USDC);
-    const solToken = orcaPool.getTokenA();
-    const solAmount = new Decimal(0.05);
-    const quote = await orcaPool.getQuote(solToken, solAmount);
-    const usdcAmount = quote.getMinOutputAmount();
-    console.log(`usdc amount minimum output: ${usdcAmount.toNumber()}`);
-
-    const swapPayload = await orcaPool.swap(keypair, solToken, solAmount, usdcAmount);
-    const swapTxId = await swapPayload.execute();
-    console.log(`swap tx id: ${swapTxId}`);
-  } catch (e) {
-    console.log(`error found: ${e.message}`);
-  }
-
 })
 </script>
 <template>
+  <Header>Swap Token</Header>
+  <div class="token">
+    <div class="token__desc">I have {{ fromTokenOwnedAmount }} {{ fromToken }} in Wallet></div>
+    <div class="token_name">
+      <img :src="LaagToken.getIcon(fromToken)" />
+      <span>{{ fromToken }}</span>
+    </div>
+    <div class="token__amount">
+      {{ swapAmount }}
+    </div>
+  </div>
+
+  <div class="token">
+    <div class="token__desc">I want {{ toToken }} in Wallet></div>
+    <div class="token_name">
+      <img :src="LaagToken.getIcon(toToken)" />
+      <span>{{ toToken }}</span>
+    </div>
+    <div class="token__amount">
+      {{ convertAmount }}
+    </div>
+  </div>
 
 </template>
 <style scoped lang="scss">

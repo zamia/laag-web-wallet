@@ -41,6 +41,7 @@ specifiers:
   unplugin-vue-components: ^0.19.5
   vant: ^3.4.9
   vue: ^3.2.34
+  vue-loader: ^17.0.0
   vue-router: ^4.0.15
   webpack: ^5.72.1
 
@@ -88,6 +89,7 @@ devDependencies:
   tailwindcss: 3.0.24
   unplugin-auto-import: 0.7.2_webpack@5.72.1
   unplugin-vue-components: 0.19.5_vue@3.2.34+webpack@5.72.1
+  vue-loader: 17.0.0_webpack@5.72.1
   webpack: 5.72.1
 
 packages:

@@ -13,5 +13,31 @@ export const usePhraseStore = defineStore({
   getters: {
     getPhraseArray: (state) => state.phrase.trim().split(" "),
   },
-  actions: {},
+
+  actions: {
+    setPhrase(newPhrase) {},
+  },
+});
+
+export const useAmountStore = defineStore({
+  id: "amountStore",
+
+  state: () => ({
+    amounts: {
+      SOL: 0,
+      USDC: 0,
+    },
+  }),
+
+  getters: {
+    getTokenAmount: (state) => {
+      return (sym) => state.amounts[sym];
+    },
+  },
+
+  actions: {
+    setTokenAmount(tokenSymbol, newAmount) {
+      this.amounts[tokenSymbol] = newAmount;
+    },
+  },
 });
