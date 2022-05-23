@@ -84,7 +84,7 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .tokens {
-  margin-top: 5rem;
+  margin-top: 2rem;
 
   .tokens__title {
     font-size: 1.2rem;
@@ -128,7 +128,7 @@ onMounted(() => {
 }
 
 .total {
-  margin: 2rem 0;
+  margin: 1rem 0;
 
   .total__desc {
     color: $color-gray;
@@ -160,7 +160,7 @@ onMounted(() => {
 
 .activity {
   color: $color-main;
-  margin-top: 5rem;
+  margin-top: 2rem;
   text-align: center;
 }
 

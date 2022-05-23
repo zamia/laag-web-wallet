@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SendPreview: typeof import('./src/components/SendPreview.vue')['default']
+    SwapPreview: typeof import('./src/components/SwapPreview.vue')['default']
     Title: typeof import('./src/components/Title.vue')['default']
     TokenSelect: typeof import('./src/components/TokenSelect.vue')['default']
     TopNav: typeof import('./src/components/TopNav.vue')['default']
