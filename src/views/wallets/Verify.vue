@@ -8,8 +8,8 @@ let user_choices_q2 = ref("");
 let store = usePhraseStore();
 const words = store.getPhraseArray;
 
-const first = 1;
-const second = 2;
+const first = 2;
+const second = 6;
 const q1_answer = words[first];
 const q2_answer = words[second];
 const q1_answers = words.select_three(first).shuffle();

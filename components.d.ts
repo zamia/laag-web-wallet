@@ -5,6 +5,7 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    CopyLink: typeof import('./src/components/CopyLink.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
     IconLink: typeof import('./src/components/IconLink.vue')['default']
     MainNav: typeof import('./src/components/MainNav.vue')['default']
@@ -17,6 +18,7 @@ declare module '@vue/runtime-core' {
     TopNav: typeof import('./src/components/TopNav.vue')['default']
     VanActionSheet: typeof import('vant/es')['ActionSheet']
     VanButton: typeof import('vant/es')['Button']
+    VanCell: typeof import('vant/es')['Cell']
     VanCellGroup: typeof import('vant/es')['CellGroup']
     VanField: typeof import('vant/es')['Field']
     VanIcon: typeof import('vant/es')['Icon']

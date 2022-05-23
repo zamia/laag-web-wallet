@@ -5,6 +5,8 @@ import { createApp } from "vue";
 import { routes } from "./routes.js";
 import { createRouter, createWebHistory } from "vue-router";
 import { createPinia } from "pinia";
+import { Locale } from "vant";
+import enUS from "vant/es/locale/lang/en-US";
 
 import App from "./App.vue";
 
@@ -18,3 +20,5 @@ const router = createRouter({
 app.use(createPinia());
 app.use(router);
 app.mount("#app");
+
+Locale.use("en-US", enUS);

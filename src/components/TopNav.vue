@@ -4,10 +4,10 @@ import { Icon } from 'vant'
 
 <template>
   <div class="topnav">
-    <router-link to="/home" class="topnav__left">
+    <router-link to="/tokens" class="topnav__left">
       <Icon name="scan"></Icon>
     </router-link>
-    <router-link to="/home" class="topnav__right">
+    <router-link to="/settings" class="topnav__right">
       <Icon name="setting-o"></Icon>
     </router-link>
   </div>

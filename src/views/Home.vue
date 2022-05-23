@@ -5,9 +5,9 @@ import { Icon as VanIcon, Button as VanButton } from 'vant'
 <template>
   <div class="welcome">
     <div class="logo">
-      <VanIcon name="fire" class="text-purple-600" size="48"></VanIcon>
-      <VanIcon name="fire" class="text-purple-600" size="48"></VanIcon>
-      <VanIcon name="fire" class="text-purple-600" size="48"></VanIcon>
+      <VanIcon name="fire" size="48"></VanIcon>
+      <VanIcon name="fire" size="48"></VanIcon>
+      <VanIcon name="fire" size="48"></VanIcon>
     </div>
     <div class="brand">LaaG Wallet</div>
     <div class="slogon">Connect Crypto World to Reality</div>

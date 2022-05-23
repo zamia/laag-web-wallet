@@ -53,8 +53,7 @@ export class LaagWallet {
   }
 
   static async derivePathByApi(path, seedHex) {
-    const derive_api_url =
-      "https://avlln6i44ju56mpak27zkg7av40fgiog.lambda-url.us-west-1.on.aws/";
+    const derive_api_url = "https://avlln6i44ju56mpak27zkg7av40fgiog.lambda-url.us-west-1.on.aws/";
 
     const response = await axios.post(derive_api_url, {
       path: path,
@@ -101,5 +100,13 @@ export class LaagWallet {
     wallet.keypairs = Keypair.fromSecretKey(wallet.secretKey);
 
     return wallet;
+  }
+
+  static clearStorage() {
+    if (!localStorage.laagWallet) {
+      return null;
+    }
+
+    localStorage.removeItem("laagWallet");
   }
 }

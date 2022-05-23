@@ -1,32 +1,34 @@
 <script setup>
-import { onMounted } from 'vue';
-import * as bip39 from 'bip39'
 import { usePhraseStore } from '@/store.js'
 import CopyLink from '@/components/CopyLink.vue'
 
-const store = usePhraseStore()
+const store = usePhraseStore();
+const coveredPhrase = store.phrase.replaceAll(/\S/ig, '*');
+const showPhrase = ref(coveredPhrase);
 
-onMounted(() => {
-  if (!store.phrase || store.phrase == "") {
-    store.phrase = bip39.generateMnemonic();
-    console.log(`phrase: ${store.phrase}`);
-  }
-})
-
+const onMouseDown = () => {
+  showPhrase.value = store.phrase;
+}
+const onMouseUp = () => {
+  showPhrase.value = coveredPhrase;
+}
 </script>
 
 <template>
-  <Header>Create New Wallet</Header>
-  <Title title="Writedown Recovery Phrase">
+  <Header>View your recovery phrase</Header>
+  <Title title="Your Recovery Phrase">
     Recovery phrase is your backup of your wallet
   </Title>
 
   <div class="phrase">
     Write down your recovery phrase:
-    <div class="phrase__content">
-      {{ store.phrase }}
-    </div>
+    <div class="phrase__content"> {{ showPhrase }} </div>
     <CopyLink :value="store.phrase" class="phrase__cmd"></CopyLink>
+
+    <div>
+      <VanButton class="phrase__commands" type="primary" round @mousedown="onMouseDown" @mouseup="onMouseUp"
+        @touchstart="onMouseDown" @touchend="onMouseUp" @mouseleave="onMouseUp">Hold to Show</VanButton>
+    </div>
   </div>
 
   <div class="note note--first">
@@ -43,9 +45,6 @@ onMounted(() => {
     </div>
   </div>
 
-  <div class="commands">
-    <VanButton type="primary" block to="/wallets/verify">Continue</VanButton>
-  </div>
 </template>
 
 <style scoped lang="scss">
@@ -61,6 +60,11 @@ onMounted(() => {
 
   .phrase__cmd {
     color: $color-main;
+  }
+
+  .phrase__commands {
+    margin-top: 2rem;
+    min-width: 10rem;
   }
 }
 

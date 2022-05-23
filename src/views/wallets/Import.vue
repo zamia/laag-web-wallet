@@ -4,6 +4,7 @@ import { LaagWallet } from '@/models'
 import { usePhraseStore } from '@/store.js'
 import { useRouter } from 'vue-router'
 import { Field, Button } from 'vant'
+import CopyLink from '@/components/CopyLink.vue'
 
 const router = useRouter();
 
@@ -32,7 +33,7 @@ const importPhrase = async () => {
       </Field>
     </div>
     <div class="phrase__cmd">
-      <a class='link-cmd'>tap to paste</a>
+      <CopyLink :value="phrase"></CopyLink>
     </div>
 
     <div class="import">
@@ -61,7 +62,8 @@ const importPhrase = async () => {
 
   .phrase__cmd {
     text-align: center;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
+    color: $color-main;
   }
 }
 

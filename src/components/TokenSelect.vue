@@ -23,12 +23,12 @@ const tokenModalOnSelect = (item) => {
 </script>
 
 <template>
-  <div class="token">
+  <div class="token-select">
     <IconLink href="" :icon="tokenSelected.icon" icon-size="3rem">
-      <span class="token__name">{{ tokenSelected.symbol }}</span>
-      <span class="token__desc">{{ tokenSelected.name }}</span>
+      <span class="token-select__name">{{ tokenSelected.symbol }}</span>
+      <span class="token-select__desc">{{ tokenSelected.name }}</span>
     </IconLink>
-    <a class="token__select" @click="tokenModalShow = true">
+    <a class="token-select__arrow" @click="tokenModalShow = true">
       <VanIcon name="arrow-down"></VanIcon>
     </a>
     <VanActionSheet v-model:show="tokenModalShow" :actions="tokenModalOptions" @select="tokenModalOnSelect"
@@ -38,10 +38,10 @@ const tokenModalOnSelect = (item) => {
 </template>
 
 <style scoped lang="scss">
-.token {
+.token-select {
   position: relative;
 
-  .token__select {
+  .token-select__arrow {
     position: absolute;
     top: 0;
     right: 50%;
@@ -51,11 +51,11 @@ const tokenModalOnSelect = (item) => {
     padding: 1rem;
   }
 
-  .token__name {
+  .token-select__name {
     font-size: 1.2rem;
   }
 
-  .token__desc {
+  .token-select__desc {
     padding-left: 0.5rem;
     color: $color-gray;
   }
