@@ -1,17 +1,11 @@
 <script setup>
-import { shortAddress, sendSol, sendUSDC } from '@/utils';
-import { useStorageStore } from '@/composables';
-
-const router = useRouter();
+import { shortAddress } from '@/utils';
 
 const props = defineProps(["token", "amount", "recipient"]);
 const token = toRef(props, "token")
 const amount = toRef(props, "amount")
 const recipient = toRef(props, "recipient")
 const fee = ref(0.00005);
-
-const { store } = useStorageStore();
-const keypairs = store.keypairs;
 
 </script>
 <template>

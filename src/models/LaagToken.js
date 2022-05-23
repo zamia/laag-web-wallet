@@ -22,14 +22,14 @@ export class LaagToken {
   ];
 
   static getToken(sym) {
-    return this.PresetTokenList.find((e) => e.symbol === sym);
+    return LaagToken.PresetTokenList.find((e) => e.symbol == sym);
   }
 
   static getPrice(sym) {
-    return this.getToken(sym).price;
+    return LaagToken.getToken(sym).price;
   }
 
   static getIcon(sym) {
-    return this.getToken(sym).icon;
+    return LaagToken.getToken(sym).icon;
   }
 }

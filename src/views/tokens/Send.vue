@@ -10,7 +10,7 @@ const currentTotal = computed(() => Number(currentAmount.value) * Number(tokenSe
 const isSendReady = computed(() => Number(currentAmount.value) > 0.0 && isValidAddress(recipientAddress.value));
 
 const router = useRouter();
-const finishSendTx = () => {
+const executeSendTx = () => {
   router.push({
     name: "SendSubmit",
     params: {
@@ -19,7 +19,7 @@ const finishSendTx = () => {
       recipient: recipientAddress.value,
     }
   })
-}
+};
 
 const previewModalShowing = ref(false);
 
@@ -60,7 +60,7 @@ const previewModalShowing = ref(false);
     <div class="review-modal__content">
       <SendPreview :token="tokenSelected.symbol" :amount="currentAmount" :recipient="recipientAddress" />
       <div class="review-modal__cmd">
-        <VanButton type="primary" block @click="finishSendTx">Confirm Send</VanButton>
+        <VanButton type="primary" block @click="executeSendTx()">Confirm Send</VanButton>
       </div>
     </div>
   </VanActionSheet>

@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import { usePhraseStore } from "@/store.js"
-import { RadioGroup as VanRadioGroup, Radio as VanRadio, Button as VanButton } from 'vant'
 
 let user_choices_q1 = ref("");
 let user_choices_q2 = ref("");
