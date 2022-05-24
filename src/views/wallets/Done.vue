@@ -2,7 +2,8 @@
 import { ref, onMounted } from 'vue'
 import { usePhraseStore } from "@/store.js"
 import { LaagWallet } from '@/models'
-import { Loading, Icon } from 'vant'
+import { Loading } from 'vant'
+import { CheckmarkCircle24Regular } from '@vicons/fluent';
 
 let loading = ref(true);
 let error = ref(false);
@@ -47,13 +48,15 @@ onMounted(async () => {
   <div v-else>
     <div class="notify">
       <div class="notify__sign">
-        <Icon name="passed" size="64"></Icon>
+        <XIcon size="64">
+          <CheckmarkCircle24Regular />
+        </XIcon>
       </div>
       <div class="notify__content">
         Successfully Created new wallet!
       </div>
       <div class="notify__cmd">
-        <a class='link-cmd' @click="this.$router.push('/tokens')">View My Assets</a>
+        <a class='button-cmd' @click="this.$router.push('/tokens')">View My Assets</a>
       </div>
     </div>
     <div class="hr"></div>
@@ -93,6 +96,10 @@ onMounted(async () => {
     i {
       color: $color-main;
     }
+  }
+
+  .notify__cmd {
+    margin-top: 2rem;
   }
 }
 

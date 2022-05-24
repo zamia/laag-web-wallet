@@ -1,36 +1,18 @@
 @import "@/css/variables.scss";
 
-:root {
-  --van-primary-color: #{ $color-main };
-  // --van-success-color: var(--van-green);
-  // --van-danger-color: var(--van-red);
-  // --van-warning-color: var(--van-orange);
-  --van-text-color: #{ $text-white };
-  --van-text-color-2: #{$text-secondary};
-  --van-text-color-3: #{$text-default};
-  --van-text-link-color: #{$color-main};
-  // --van-activw-color: var(--van-gray-2);
-  --van-active-opacity: 0.6;
-  --van-disabled-opacity: 0.5;
-  --van-background-color: #{$bg-main};
-  --van-background-color-light: #{$bg-lightest};
-  --van-border-color: #{$bg-lightest};
-
-  // some component
-  --van-gray-7: #{$text-default};
-  --van-action-sheet-cancel-text-color: #{$text-default};
-}
-
 body{
   min-height: 100vh;
   background-color: $bg-main;
-  color: $text-default;
+  color: $text-secondary;
 }
 
 .link-cmd{
   color: $color-main;
 }
-
-.van-button{
-  border-radius: 999px;
+.button-cmd{
+  color: $color-main;
+  padding: 5px 20px;
+  border: 1px solid $bg-lightest;
+  border-radius: 1rem;
 }
+.xicon{ color: $color-main;}

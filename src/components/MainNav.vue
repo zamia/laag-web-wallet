@@ -1,11 +1,17 @@
 <script setup>
 import IconLink from './IconLink.vue'
+const props = defineProps(["activeItem"]);
+
+const isActive = item => props.activeItem == item;
 </script>
 <template>
   <div class="main-nav">
-    <IconLink href="/tokens" icon="paid" icon-size="1.5rem" text="Assets" class="main-nav__item"></IconLink>
-    <IconLink href="/swap" icon="exchange" icon-size="1.5rem" text="Swap" class="main-nav__item"></IconLink>
-    <IconLink href="/services" icon="shop-o" icon-size="1.5rem" text="Service" class="main-nav__item"></IconLink>
+    <IconLink href="/tokens" icon="paid" icon-size="1.5rem" text="Assets" :active="isActive('tokens')"
+      class="main-nav__item"></IconLink>
+    <IconLink href="/swap" icon="exchange" icon-size="1.5rem" text="Swap" :active="isActive('swap')"
+      class="main-nav__item"></IconLink>
+    <IconLink href="/services" icon="shop-o" icon-size="1.5rem" text="Service" :active="isActive('service')"
+      class="main-nav__item"></IconLink>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <main id="main">
+  <main id="main" :class="$route.meta.extraClass">
     <router-view />
   </main>
 </template>
@@ -8,5 +8,9 @@
 #main {
   margin: 0 auto;
   padding: 2rem;
+
+  &.no-padding {
+    padding: 0;
+  }
 }
 </style>

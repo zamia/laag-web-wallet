@@ -1,7 +1,7 @@
 <script setup>
 import { Icon } from 'vant'
 
-const props = defineProps(["href", "icon", "text", "icon-size"])
+const props = defineProps(["href", "icon", "text", "icon-size", "active"])
 
 let icon_size = props["iconSize"]
 if (!icon_size) {
@@ -10,7 +10,7 @@ if (!icon_size) {
 </script>
 <template>
   <router-link :to="props.href" class="icon-link">
-    <Icon :name="props.icon" :size="icon_size" class="icon-link__icon"></Icon>
+    <Icon :name="props.icon" :size="icon_size" :class="`icon-link__icon ${active ? 'active' : ''}`"></Icon>
     <span class="icon-link__text">
       {{ props.text }}
       <slot></slot>
@@ -24,11 +24,20 @@ if (!icon_size) {
 
   .icon-link__icon {
     padding: 0.5rem;
+    color: $text-secondary;
+
+    &.active {
+      border: #9474FF;
+      background-color: #9474FF;
+      border-radius: 2rem;
+      box-shadow: 0px 0px 20px 10px rgba(67, 41, 154, 0.3);
+    }
   }
 
   .icon-link__text {
     display: block;
-    color: $color-main;
+    margin-top: 0.5rem;
+    color: $text-secondary;
   }
 }
 </style>

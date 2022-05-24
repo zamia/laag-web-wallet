@@ -42,7 +42,7 @@ export const routes = [
     path: "/tokens",
     component: EmptyRouterView,
     children: [
-      { path: "", component: TokensHome },
+      { path: "", component: TokensHome, meta: { extraClass: "no-padding" } },
       { path: "send", component: TokensSend },
       { path: "send-submit", component: TokensSendSubmit, props: true, name: "SendSubmit" },
       { path: "receive", component: TokensReceive },

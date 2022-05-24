@@ -40,7 +40,8 @@ const executeSwapTx = () => {
 
 </script>
 <template>
-  <Header>Swap Token</Header>
+  <TopNav></TopNav>
+  <div class="header">Swap Token</div>
   <div class="token">
     <div class="token__desc">I have {{ fromTokenOwnedAmount }} {{ fromToken }} in Wallet</div>
     <img class="token__icon" :src="LaagToken.getIcon(fromToken)" />
@@ -75,6 +76,8 @@ const executeSwapTx = () => {
     <li>We swap token through 3rd party API, LaaG Wallet didn’t charge any extra fees.</li>
   </ul>
 
+  <MainNav activeItem="swap"></MainNav>
+
   <VanActionSheet v-model:show="previewModalShowing" title="Preview Swap Transaction" class="review-modal">
     <div class="review-modal__content">
       <SwapPreview :fromToken="fromToken" :toToken="toToken" :amount="swapAmount"></SwapPreview>
@@ -85,6 +88,13 @@ const executeSwapTx = () => {
   </VanActionSheet>
 </template>
 <style scoped lang="scss">
+.header {
+  text-align: center;
+  margin-top: 2rem;
+  color: $color-main;
+  font-size: 1.2rem;
+}
+
 .switch {
   margin-top: 2rem;
   text-align: center;

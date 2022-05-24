@@ -31,4 +31,17 @@ $text-secondary: #e9e9e9;
 $text-default: #aaa;
 $text-light: #707070;
 
-//background: linear-gradient(132deg, #AAEFFF 0%, #986AFF 100%);
+:root {
+  --van-primary-color: #{ $color-main };
+  --van-text-color: #{ $text-white };
+  --van-text-color-2: #{$text-secondary};
+  --van-text-color-3: #{$text-default};
+  --van-text-link-color: #{$color-main};
+  --van-background-color: #{$bg-main};
+  --van-background-color-light: #{$bg-light};
+  --van-border-color: #{$bg-light};
+
+  // some component
+  --van-action-sheet-cancel-text-color: #{$text-default};
+  --van-button-border-radius: 999px;
+}

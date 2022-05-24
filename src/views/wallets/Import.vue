@@ -4,7 +4,7 @@ import { LaagWallet } from '@/models'
 import { usePhraseStore } from '@/store.js'
 import { useRouter } from 'vue-router'
 import { Field, Button } from 'vant'
-import CopyLink from '@/components/CopyLink.vue'
+import PasteLink from '@/components/PasteLink.vue'
 
 const router = useRouter();
 
@@ -28,12 +28,12 @@ const importPhrase = async () => {
   <div class="phrase">
     Please enter your recovery phrase:
     <div class="phrase__content">
-      <Field v-model="phrase" type="textarea" name="phrase" rows="5" autoresize class="phrase-input"
+      <Field v-model="phrase" type="textarea" name="phrase" rows="5" autofocus autoresize class="phrase-input"
         placeholder="please enter your recovery phrase">
       </Field>
     </div>
     <div class="phrase__cmd">
-      <CopyLink :value="phrase"></CopyLink>
+      <PasteLink v-model="phrase"></PasteLink>
     </div>
 
     <div class="import">
@@ -46,7 +46,11 @@ const importPhrase = async () => {
 
 <style scoped lang="scss">
 .phrase-input {
-  border: 1px solid $color-light;
+  border: 1px solid $bg-light;
+
+  &.van-field {
+    border-radius: 1rem;
+  }
 
   textarea {
     padding: 1rem;

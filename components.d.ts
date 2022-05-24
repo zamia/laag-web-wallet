@@ -9,6 +9,8 @@ declare module '@vue/runtime-core' {
     Header: typeof import('./src/components/Header.vue')['default']
     IconLink: typeof import('./src/components/IconLink.vue')['default']
     MainNav: typeof import('./src/components/MainNav.vue')['default']
+    PhraseCard: typeof import('./src/components/PhraseCard.vue')['default']
+    RadioGroup: typeof import('./src/components/RadioGroup.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SendPreview: typeof import('./src/components/SendPreview.vue')['default']
@@ -23,8 +25,6 @@ declare module '@vue/runtime-core' {
     VanField: typeof import('vant/es')['Field']
     VanIcon: typeof import('vant/es')['Icon']
     VanLoading: typeof import('vant/es')['Loading']
-    VanRadio: typeof import('vant/es')['Radio']
-    VanRadioGroup: typeof import('vant/es')['RadioGroup']
   }
 }
 
