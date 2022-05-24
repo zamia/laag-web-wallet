@@ -34,16 +34,17 @@ const previewModalShowing = ref(false);
 
   <div class="amount">
     <span>Enter Amount:</span>
-    <VanCellGroup class="amount__input">
-      <VanField v-model="currentAmount" type="number" input-align="center" :border="false"></VanField>
-    </VanCellGroup>
+    <div class="amount__input">
+      <VanField v-model="currentAmount" type="number" input-align="center"></VanField>
+    </div>
     <div class="amount__desc">$ {{ formatMoney(currentTotal) }} <span></span></div>
   </div>
   <div class="recipient">
     <span>Enter Recipient Address:</span>
-    <VanCellGroup class="recipient__input">
-      <VanField v-model="recipientAddress" type="textarea" input-align="center" rows="1" autoresize></VanField>
-    </VanCellGroup>
+    <div class="recipient__input">
+      <VanField v-model="recipientAddress" type="textarea" input-align="center" rows="1" autoresize>
+      </VanField>
+    </div>
   </div>
   <div class="cmds">
     <VanButton type="primary" block :disabled="!isSendReady" @click="previewModalShowing = true">Send</VanButton>

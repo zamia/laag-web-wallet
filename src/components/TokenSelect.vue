@@ -32,7 +32,7 @@ const tokenModalOnSelect = (item) => {
       <VanIcon name="arrow-down"></VanIcon>
     </a>
     <VanActionSheet v-model:show="tokenModalShow" :actions="tokenModalOptions" @select="tokenModalOnSelect"
-      cancel-text="Cancel" description="Select Sending Token" close-on-click-action>
+      cancel-text="Cancel" description="Select Token" close-on-click-action>
     </VanActionSheet>
   </div>
 </template>

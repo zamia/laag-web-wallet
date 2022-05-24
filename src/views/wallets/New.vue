@@ -1,10 +1,10 @@
 <script setup>
-import { onMounted } from 'vue';
 import * as bip39 from 'bip39'
 import { usePhraseStore } from '@/store.js'
-import CopyLink from '@/components/CopyLink.vue'
+import PhraseCard from '@/components/PhraseCard.vue'
 
 const store = usePhraseStore()
+const phraseArray = computed(() => store.phrase.split(' '))
 
 onMounted(() => {
   if (!store.phrase || store.phrase == "") {
@@ -12,19 +12,17 @@ onMounted(() => {
     console.log(`phrase: ${store.phrase}`);
   }
 })
-
 </script>
 
 <template>
   <Header>Create New Wallet</Header>
   <Title title="Writedown Recovery Phrase">
-    Recovery phrase is your backup of your wallet
+    Recovery phrase is the backup of wallet
   </Title>
 
   <div class="phrase">
-    Write down your recovery phrase:
     <div class="phrase__content">
-      {{ store.phrase }}
+      <PhraseCard :phraseArray="phraseArray"></PhraseCard>
     </div>
     <CopyLink :value="store.phrase" class="phrase__cmd"></CopyLink>
   </div>
@@ -44,19 +42,17 @@ onMounted(() => {
   </div>
 
   <div class="commands">
-    <VanButton type="primary" block to="/wallets/verify">Continue</VanButton>
+    <VanButton type="primary" round block to="/wallets/verify">Continue</VanButton>
   </div>
 </template>
 
 <style scoped lang="scss">
 .phrase {
-  text-align: center;
-
   .phrase__content {
     margin: 1rem 0 1rem;
-    border: 1px solid $color-gray;
-    background-color: $color-light;
-    padding: 2rem;
+    border: 1px solid $bg-light;
+    background-color: $bg-light;
+    border-radius: 1rem;
   }
 
   .phrase__cmd {
@@ -76,7 +72,7 @@ onMounted(() => {
   }
 
   .note__title {
-    color: $color-black;
+    color: $color-warn;
   }
 
   .note__desc {

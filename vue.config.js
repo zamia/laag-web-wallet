@@ -1,7 +1,6 @@
 const { defineConfig } = require("@vue/cli-service");
-const NodePolyFillPlugin = require("node-polyfill-webpack-plugin");
 const { VantResolver } = require("unplugin-vue-components/resolvers");
-const path = require("path");
+const NodePolyFillPlugin = require("node-polyfill-webpack-plugin");
 
 module.exports = defineConfig({
   transpileDependencies: true,
@@ -10,6 +9,10 @@ module.exports = defineConfig({
       alias: {},
     },
     plugins: [
+      require("unplugin-vue-components/webpack")({
+        /* options */
+        resolvers: [VantResolver()],
+      }),
       require("unplugin-auto-import/webpack")({
         include: [
           /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
@@ -27,11 +30,6 @@ module.exports = defineConfig({
       }),
 
       new NodePolyFillPlugin(),
-
-      require("unplugin-vue-components/webpack")({
-        /* options */
-        resolvers: [VantResolver()],
-      }),
     ],
     optimization: {
       splitChunks: {

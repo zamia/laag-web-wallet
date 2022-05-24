@@ -29,6 +29,9 @@
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
     "@babel/preset-env": "^7.18.0",
+    "@vicons/fa": "^0.12.0",
+    "@vicons/fluent": "^0.12.0",
+    "@vicons/utils": "^0.1.4",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
@@ -45,7 +48,6 @@
     "style-resources-loader": "^1.5.0",
     "unplugin-auto-import": "^0.7.2",
     "unplugin-vue-components": "^0.19.5",
-    "vue-loader": "^17.0.0",
     "webpack": "^5.72.1"
   },
   "eslintConfig": {

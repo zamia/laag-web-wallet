@@ -9,6 +9,9 @@ specifiers:
   '@solana/spl-token': ^0.2.0
   '@solana/spl-token-registry': ^0.2.4041
   '@solana/web3.js': ^1.43.0
+  '@vicons/fa': ^0.12.0
+  '@vicons/fluent': ^0.12.0
+  '@vicons/utils': ^0.1.4
   '@vue/cli-plugin-babel': ~5.0.0
   '@vue/cli-plugin-eslint': ~5.0.0
   '@vue/cli-service': ~5.0.0
@@ -34,7 +37,6 @@ specifiers:
   unplugin-vue-components: ^0.19.5
   vant: ^3.4.9
   vue: ^3.2.34
-  vue-loader: ^17.0.0
   vue-router: ^4.0.15
   vue3-clipboard: ^1.0.0
   webpack: ^5.72.1
@@ -61,6 +63,9 @@ devDependencies:
   '@babel/core': 7.18.0
   '@babel/eslint-parser': 7.17.0_3jmbb74oue544vtiil27ushva4
   '@babel/preset-env': 7.18.0_@babel+core@7.18.0
+  '@vicons/fa': 0.12.0
+  '@vicons/fluent': 0.12.0
+  '@vicons/utils': 0.1.4_vue@3.2.34
   '@vue/cli-plugin-babel': 5.0.4_rt4koe3cozpty5utxiomr7bcrm
   '@vue/cli-plugin-eslint': 5.0.4_m3sc7y4w7ltehwosatj2ps6y7m
   '@vue/cli-service': 5.0.4_qhxkoxu5stnqjrzdtytquxjnnm
@@ -77,7 +82,6 @@ devDependencies:
   style-resources-loader: 1.5.0_webpack@5.72.1
   unplugin-auto-import: 0.7.2_webpack@5.72.1
   unplugin-vue-components: 0.19.5_vue@3.2.34+webpack@5.72.1
-  vue-loader: 17.0.0_webpack@5.72.1
   webpack: 5.72.1
 
 packages:
@@ -1314,6 +1318,10 @@ packages:
       vue: 3.2.34
     dev: false
 
+  /@emotion/hash/0.8.0:
+    resolution: {integrity: sha512-kBJtf7PH6aWwZ6fka3zQ0p6SBYzx4fl1LoZXE2RrnYST9Xljm7WfKJrU4g/Xr3Beg72MLrp1AWNUmuYJTL7Cow==}
+    dev: true
+
   /@eslint/eslintrc/0.4.3:
     resolution: {integrity: sha512-J6KFFz5QCYUJq3pf0mjEcCJVERbzv71PUIDczuh9JkwGEzced6CO5ADLHB1rbf/+oPBtoPfMYNOpGDzCANlbXw==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -1813,6 +1821,10 @@ packages:
   /@types/node/12.20.52:
     resolution: {integrity: sha512-cfkwWw72849SNYp3Zx0IcIs25vABmFh73xicxhCkTcvtZQeIez15PpwQN8fY3RD7gv1Wrxlc9MEtfMORZDEsGw==}
 
+  /@types/node/14.14.45:
+    resolution: {integrity: sha512-DssMqTV9UnnoxDWu959sDLZzfvqCF0qDNRjaWeYSui9xkFe61kKo4l1TWNTQONpuXEm+gLMRvdlzvNHBamzmEw==}
+    dev: true
+
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
@@ -1875,6 +1887,23 @@ packages:
   /@vant/use/1.3.6:
     resolution: {integrity: sha512-3z+nywPaV2F5BdJO7RQxWlgfzJeEOmViD2yHMb7Tg+R4NR/7iQskqW8v2Cnv9FWSJgTOSHlcr7UzeLpiTAP4HA==}
     dev: false
+
+  /@vicons/fa/0.12.0:
+    resolution: {integrity: sha512-g2PIeJLsTHUjt6bK63LxqC0uYQB7iu+xViJOxvp1s8b9/akpXVPVWjDTTsP980/0KYyMMe4U7F/aUo7wY+MsXA==}
+    dev: true
+
+  /@vicons/fluent/0.12.0:
+    resolution: {integrity: sha512-ATCiqPuiJ6RI5GBlD3BIpZ9Xw4MsCA4RpI5oR6MCti4quS4mX1Gp6N74FCzw7lgOj+80rV4HMKhZTVInwimpVQ==}
+    dev: true
+
+  /@vicons/utils/0.1.4_vue@3.2.34:
+    resolution: {integrity: sha512-OHI19qVNN6i+uPQ+Y3f2s0dUxwsYnOCcKBW7XOU4yXXO1aU3ZoKpblCc3+4N0qmgoJs5rWKRAaMisipqEXJwAg==}
+    peerDependencies:
+      vue: ^3.0.6
+    dependencies:
+      '@xicons/utils': 0.1.4
+      vue: 3.2.34
+    dev: true
 
   /@vue/babel-helper-vue-jsx-merge-props/1.2.1:
     resolution: {integrity: sha512-QOi5OW45e2R20VygMSNhyQHvpdUwQZqGPc748JLGCYEy+yp8fNFNdbNIGAgZmi9e+2JHPd6i6idRuqivyicIkA==}
@@ -2518,6 +2547,12 @@ packages:
     dependencies:
       '@webassemblyjs/ast': 1.11.1
       '@xtuc/long': 4.2.2
+    dev: true
+
+  /@xicons/utils/0.1.4:
+    resolution: {integrity: sha512-uXxKDLz9abr80yJC05XSTq6wlyFcdW+N/1IYJkeHjzzXVc4VQ0sEYMoMMTjAH7HQBOyOkzOB4pf5NGF72lwa8Q==}
+    dependencies:
+      css-render: 0.13.9
     dev: true
 
   /@xtuc/ieee754/1.2.0:
@@ -3795,6 +3830,14 @@ packages:
       webpack: 5.72.1
     dev: true
 
+  /css-render/0.13.9:
+    resolution: {integrity: sha512-n3C4ZH59rveBrUlAD7n0Ze9/gUMKa4dlH1C9CWKpGcIHR/xRcIVXzBGy1iw8WWq2ySmn2/ZqOpySQNAK5Pb6sw==}
+    dependencies:
+      '@emotion/hash': 0.8.0
+      '@types/node': 14.14.45
+      csstype: 3.0.11
+    dev: true
+
   /css-select/1.2.0:
     resolution: {integrity: sha1-KzoRBTnFNV8c2NMUYj6HCxIeyFg=}
     dependencies:
@@ -3905,6 +3948,10 @@ packages:
 
   /csstype/2.6.20:
     resolution: {integrity: sha512-/WwNkdXfckNgw6S5R125rrW8ez139lBHWouiBvX8dfMFtcn6V81REDqnH7+CRpRipfYlyU1CmOnOxrmGcFOjeA==}
+
+  /csstype/3.0.11:
+    resolution: {integrity: sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==}
+    dev: true
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}

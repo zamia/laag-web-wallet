@@ -1,21 +1,21 @@
 <script setup>
-import { Icon as VanIcon, Button as VanButton } from 'vant'
+import { GlobeAfrica } from '@vicons/fa';
 </script>
 
 <template>
   <div class="welcome">
     <div class="logo">
-      <VanIcon name="fire" size="48"></VanIcon>
-      <VanIcon name="fire" size="48"></VanIcon>
-      <VanIcon name="fire" size="48"></VanIcon>
+      <XIcon size="64">
+        <GlobeAfrica />
+      </XIcon>
     </div>
     <div class="brand">LaaG Wallet</div>
     <div class="slogon">Connect Crypto World to Reality</div>
   </div>
 
   <div class="actions">
-    <VanButton type="primary" block to="/wallets/new">Create New Wallet</VanButton>
-    <VanButton type="default" block to="/wallets/import">Import existing Wallet</VanButton>
+    <VanButton type="primary" round block to="/wallets/new">Create New Wallet</VanButton>
+    <VanButton type="default" round block to="/wallets/import">Import existing Wallet</VanButton>
   </div>
 </template>
 
@@ -32,10 +32,16 @@ import { Icon as VanIcon, Button as VanButton } from 'vant'
     justify-content: center;
   }
 
+  .logo {
+    .xicon {
+      color: $color-main;
+    }
+  }
+
   .brand {
     font-size: 2rem;
     line-height: 4rem;
-    color: $color-black;
+    color: $text-white;
   }
 
   .slogon {

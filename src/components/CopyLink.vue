@@ -1,6 +1,7 @@
 <script setup>
 import { copyText } from "vue3-clipboard";
 import { Toast } from "vant";
+import { DocumentCopy24Regular } from "@vicons/fluent";
 
 const props = defineProps(["value"]);
 
@@ -17,9 +18,22 @@ const onClick = (value) => {
 
 <template>
   <a class="copy-link" @click="onClick(props.value)">
-    <VanIcon name="records"></VanIcon> <span>Copy to clipboard</span>
+    <XIcon size="24">
+      <DocumentCopy24Regular />
+    </XIcon>
+    <span>Copy to clipboard</span>
   </a>
 </template>
 
 <style scoped lang="scss">
+.copy-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .xicon {
+    margin-right: 0.5rem;
+  }
+
+}
 </style>

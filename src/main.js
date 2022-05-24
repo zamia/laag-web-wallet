@@ -7,6 +7,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { createPinia } from "pinia";
 import { Locale } from "vant";
 import enUS from "vant/es/locale/lang/en-US";
+import { Icon } from "@vicons/utils";
 
 import App from "./App.vue";
 
@@ -19,6 +20,7 @@ const router = createRouter({
 
 app.use(createPinia());
 app.use(router);
+app.component("XIcon", Icon);
 app.mount("#app");
 
 Locale.use("en-US", enUS);

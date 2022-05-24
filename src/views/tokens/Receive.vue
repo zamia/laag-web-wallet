@@ -2,7 +2,6 @@
 import { PresetTokenList } from '@/utils'
 import { useStorageStore } from '@/composables'
 import VueQrcode from '@chenfengyuan/vue-qrcode';
-import CopyLink from '@/components/CopyLink.vue'
 
 const tokenSelectedIndex = ref(0);
 const tokenSelected = computed(() => PresetTokenList.at(tokenSelectedIndex.value))

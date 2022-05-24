@@ -13,7 +13,7 @@ import IconLink from './IconLink.vue'
 .main-nav {
   display: flex;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;

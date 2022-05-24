@@ -13,13 +13,16 @@ defineProps(['title', 'description']);
 
 <style scoped lang="scss">
 .title {
-  font-size: 18px;
+  font-size: 1.2rem;
   color: $color-main;
+  text-align: center;
   margin: 1rem 0 2rem;
 
   .title__desc {
-    font-size: 14px;
-    color: $color-light;
+    font-size: 1rem;
+    color: $text-default;
+    font-weight: normal;
+    margin-top: 0.2rem;
   }
 }
 </style>
