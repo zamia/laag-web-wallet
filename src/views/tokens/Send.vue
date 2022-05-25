@@ -84,6 +84,10 @@ const previewModalShowing = ref(false);
   .amount__input {
     margin: 1rem 0;
   }
+
+  .van-field {
+    border-radius: 999px;
+  }
 }
 
 .recipient {
@@ -92,6 +96,10 @@ const previewModalShowing = ref(false);
 
   .recipient__input {
     margin-top: 1rem;
+  }
+
+  .van-field {
+    border-radius: 999px;
   }
 }
 

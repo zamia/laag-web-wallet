@@ -53,8 +53,8 @@ const executeSwapTx = () => {
   </div>
 
   <div class="switch">
-    <VanButton @click="switchToken()">
-      <VanIcon name="exchange" size="32"></VanIcon>
+    <VanButton @click="switchToken()" class="switch__button">
+      <VanIcon name="exchange" size="24"></VanIcon>
     </VanButton>
   </div>
 
@@ -99,6 +99,10 @@ const executeSwapTx = () => {
   margin-top: 2rem;
   text-align: center;
 
+  .switch__button {
+    border-radius: 999px;
+  }
+
   i {
     transform: rotate(90deg);
     color: $color-main;
@@ -130,15 +134,22 @@ const executeSwapTx = () => {
   }
 
   .token__amount {
-    flex: auto;
+    flex: 1 1 40%;
+    margin-left: 1rem;
     text-align: right;
 
     >span {
-      padding-right: 1rem;
+      line-height: 2rem;
+      padding-right: 2rem;
     }
 
     &.token__amount--last {
       padding-right: 1rem;
+    }
+
+    .van-field {
+      border-radius: 999px;
+      padding-right: 2rem;
     }
   }
 }

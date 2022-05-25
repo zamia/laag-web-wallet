@@ -21,8 +21,8 @@ import { GlobeAfrica } from '@vicons/fa';
 
 <style scoped lang="scss">
 .welcome {
-  margin-top: 10rem;
-  margin-bottom: 10rem;
+  margin-top: 5rem;
+  margin-bottom: 8rem;
   padding: 2rem;
 
   .logo,
