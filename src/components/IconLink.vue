@@ -27,7 +27,7 @@ if (!icon_size) {
     color: $text-secondary;
 
     &.active {
-      border: #9474FF;
+      border: 1px solid #9474FF;
       background-color: #9474FF;
       border-radius: 2rem;
       box-shadow: 0px 0px 20px 10px rgba(67, 41, 154, 0.3);

@@ -60,4 +60,12 @@ const tokenModalOnSelect = (item) => {
     color: $color-gray;
   }
 }
+
+.token-select .icon-link {
+
+  .icon-link__icon {
+
+    padding: 0;
+  }
+}
 </style>

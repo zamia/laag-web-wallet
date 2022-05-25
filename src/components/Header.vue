@@ -1,9 +1,12 @@
 <script setup>
 import { Icon } from 'vant'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 </script>
 
 <template>
-  <div class="header" @click="this.$router.back()">
+  <div class="header" @click="router.back()">
     <Icon name="arrow-left"></Icon>
     <slot />
   </div>

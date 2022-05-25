@@ -14,6 +14,7 @@ import TokensSwap from "./views/tokens/Swap.vue";
 import TokensSwapSubmit from "./views/tokens/SwapSubmit.vue";
 import SettingsHome from "./views/settings/Home.vue";
 import SettingsPhrase from "./views/settings/Phrase.vue";
+import ServicesHome from "./views/services/Home.vue";
 
 /** @type {import('vue-router').RouterOptions['routes']} */
 export const routes = [
@@ -49,6 +50,12 @@ export const routes = [
       { path: "swap", component: TokensSwap, alias: "/swap" },
       { path: "swap-submit", component: TokensSwapSubmit, props: true, name: "SwapSubmit" },
     ],
+  },
+
+  {
+    path: "/services",
+    component: EmptyRouterView,
+    children: [{ path: "", component: ServicesHome }],
   },
 
   { path: "/:path(.*)", component: NotFound },

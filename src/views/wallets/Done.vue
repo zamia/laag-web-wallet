@@ -4,6 +4,7 @@ import { usePhraseStore } from "@/store.js"
 import { LaagWallet } from '@/models'
 import { Loading } from 'vant'
 import { CheckmarkCircle24Regular } from '@vicons/fluent';
+import { useRouter } from 'vue-router';
 
 let loading = ref(true);
 let error = ref(false);
@@ -11,6 +12,8 @@ let error = ref(false);
 const store = usePhraseStore();
 const phrase = store.phrase;
 console.log(`Done: phrase: ${phrase}`);
+
+const router = useRouter();
 
 onMounted(async () => {
   if (!LaagWallet.isValidPhrase(phrase)) {
@@ -56,7 +59,7 @@ onMounted(async () => {
         Successfully Created new wallet!
       </div>
       <div class="notify__cmd">
-        <a class='button-cmd' @click="this.$router.push('/tokens')">View My Assets</a>
+        <a class='button-cmd' @click="router.push('/tokens')">View My Assets</a>
       </div>
     </div>
     <div class="hr"></div>
@@ -68,7 +71,7 @@ onMounted(async () => {
         It’s highly recommended that setting your pin code now to increase security level to protect your assets.
       </div>
       <div class="pincode__cmd">
-        <a class='link-cmd' @click="this.$router.push('/settings/pincode')">Set Pin Code Now</a>
+        <a class='link-cmd' @click="router.push('/settings/pincode')">Set Pin Code Now</a>
       </div>
     </div>
   </div>

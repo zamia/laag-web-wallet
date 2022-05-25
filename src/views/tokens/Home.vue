@@ -94,7 +94,7 @@ onMounted(() => {
 
 .tokens {
   margin-top: 2rem;
-  padding: 0 1rem;
+  padding: 0 2rem;
 
   .tokens__title {
     font-size: 1.2rem;
@@ -109,10 +109,13 @@ onMounted(() => {
 .token {
   display: flex;
   align-items: center;
+  justify-content: space-around;
 
   img {
     width: 3rem;
     height: 3rem;
+    border: 2px solid $bg-lightest;
+    border-radius: 3rem;
   }
 
   .token__icon {
@@ -172,7 +175,7 @@ onMounted(() => {
 }
 
 .activity {
-  margin-top: 2rem;
+  margin: 2rem 0 4rem;
   text-align: center;
 
   a {

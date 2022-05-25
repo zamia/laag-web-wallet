@@ -28,7 +28,6 @@ const previewModalShowing = ref(false);
 <template>
   <Header>Send Token</Header>
   <div class="choose-token">
-    <div class="choose-token__title">Sending Token:</div>
     <TokenSelect v-model="tokenSelectedIndex"></TokenSelect>
   </div>
 
@@ -70,7 +69,7 @@ const previewModalShowing = ref(false);
 
 <style scoped lang="scss">
 .choose-token {
-  margin-top: 3rem;
+  margin-top: 1rem;
   text-align: center;
 
   .choose-token__title {

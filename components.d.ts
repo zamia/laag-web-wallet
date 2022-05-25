@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
     Header: typeof import('./src/components/Header.vue')['default']
     IconLink: typeof import('./src/components/IconLink.vue')['default']
     MainNav: typeof import('./src/components/MainNav.vue')['default']
+    PasteLink: typeof import('./src/components/PasteLink.vue')['default']
     PhraseCard: typeof import('./src/components/PhraseCard.vue')['default']
     RadioGroup: typeof import('./src/components/RadioGroup.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
