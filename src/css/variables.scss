@@ -40,6 +40,8 @@ $text-light: #707070;
   --van-background-color: #{$bg-main};
   --van-background-color-light: #{$bg-light};
   --van-border-color: #{$bg-light};
+  --van-active-color: #{$bg-lightest};
+  --van-active-opacity: 0.6;
 
   // some component
   --van-action-sheet-cancel-text-color: #{$text-default};

@@ -70,9 +70,9 @@ onMounted(async () => {
   </div>
 
   <div class="cmds">
+    <VanButton block type='primary' to="/tokens" :disabled="loading" class="cmds__item">Goto Homepage</VanButton>
     <VanButton block tag="a" :href="sendTxUrl" :disabled="loading" class="cmds__item" target="_blank">View Transaction
     </VanButton>
-    <VanButton block to="/tokens" :disabled="loading" class="cmds__item">Goto Homepage</VanButton>
   </div>
 
 </template>
@@ -100,7 +100,7 @@ onMounted(async () => {
   .cmds__item {
     border: 0;
     height: 2.5rem;
-    color: $color-main;
+    margin-bottom: 0.5rem;
   }
 }
 </style>

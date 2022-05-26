@@ -1,13 +1,10 @@
 <script setup>
-import { useStorageStore } from '@/composables';
 import { useAmountStore } from '@/store.js';
 import { LaagToken } from '@/models/'
 import { formatAmount, formatMoney } from '@/utils';
 import SwapPreview from '@/components/SwapPreview.vue'
 
 const amountStore = useAmountStore();
-const { store } = useStorageStore();
-console.log(store);
 
 const swapPair = ref(['SOL', 'USDC']);
 const swapAmount = ref(0.0);
@@ -42,7 +39,7 @@ const executeSwapTx = () => {
 <template>
   <TopNav></TopNav>
   <div class="header">Swap Token</div>
-  <div class="token">
+  <div class="token token--first">
     <div class="token__desc">I have {{ fromTokenOwnedAmount }} {{ fromToken }} in Wallet</div>
     <img class="token__icon" :src="LaagToken.getIcon(fromToken)" />
     <div class="token__name">{{ fromToken }}</div>
@@ -58,7 +55,7 @@ const executeSwapTx = () => {
     </VanButton>
   </div>
 
-  <div class="token">
+  <div class="token token--last">
     <div class="token__desc">I want {{ toToken }} in Wallet</div>
     <img :src="LaagToken.getIcon(toToken)" class="token__icon" />
     <div class="token__name">{{ toToken }}</div>
@@ -76,7 +73,7 @@ const executeSwapTx = () => {
     <li>We swap token through 3rd party API, LaaG Wallet didn’t charge any extra fees.</li>
   </ul>
 
-  <MainNav activeItem="swap"></MainNav>
+  <MainNav active="swap"></MainNav>
 
   <VanActionSheet v-model:show="previewModalShowing" title="Preview Swap Transaction" class="review-modal">
     <div class="review-modal__content">
@@ -96,11 +93,14 @@ const executeSwapTx = () => {
 }
 
 .switch {
-  margin-top: 2rem;
   text-align: center;
 
   .switch__button {
+    width: 2rem;
+    height: 2rem;
+    padding: 1.5rem;
     border-radius: 999px;
+    border: 1px solid $bg-lightest;
   }
 
   i {
@@ -113,7 +113,20 @@ const executeSwapTx = () => {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 2rem;
+  border: 1px solid $bg-lighter;
+  border-radius: 1rem;
+  padding: 1rem 0.5rem;
+
+  &.token--first {
+    margin-top: 2rem;
+    margin-bottom: -0.5rem;
+  }
+
+  &.token--last {
+    margin-bottom: 2rem;
+    margin-top: -0.5rem;
+  }
+
 
   .token__desc {
     flex: 0 0 100%;
@@ -155,13 +168,15 @@ const executeSwapTx = () => {
 }
 
 .cmds {
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 ul.notes {
   margin-top: 2rem;
   color: $color-gray;
   padding-left: 1rem;
+  line-height: 1.2rem;
+  font-size: 0.8rem;
 
   li {
     list-style-type: disc;

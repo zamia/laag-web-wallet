@@ -5,12 +5,12 @@ import { ScanDash24Regular, Settings24Regular } from '@vicons/fluent';
 <template>
   <div class="topnav">
     <router-link to="/tokens" class="topnav__left">
-      <XIcon size="30">
+      <XIcon size="26">
         <ScanDash24Regular />
       </XIcon>
     </router-link>
     <router-link to="/settings" class="topnav__right">
-      <XIcon size="30">
+      <XIcon size="26">
         <Settings24Regular />
       </XIcon>
     </router-link>

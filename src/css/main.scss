@@ -1,4 +1,5 @@
 @import "@/css/variables.scss";
+@import "@/css/shared.scss";
 
 body{
   min-height: 100vh;
@@ -6,9 +7,21 @@ body{
   color: $text-secondary;
 }
 
+.clearfix{
+  &:before, &:after{
+  content: "";
+  display: table;
+
+  }
+  &:after{
+    clear:both;
+  }
+}
+
 .link-cmd{
   color: $color-main;
 }
+
 .button-cmd{
   color: $color-main;
   padding: 5px 20px;

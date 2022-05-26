@@ -1,0 +1,21 @@
+.note {
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+
+  &.note--first {
+    margin-top: 3rem;
+  }
+
+  &.note--last {
+    margin-bottom: 3rem;
+  }
+
+  .note__title {
+    color: $color-warn;
+  }
+
+  .note__desc {
+    color: $color-gray;
+  }
+}

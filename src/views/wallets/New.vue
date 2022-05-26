@@ -59,24 +59,4 @@ onMounted(() => {
     color: $color-main;
   }
 }
-
-.note {
-  margin-bottom: 1rem;
-
-  &.note--first {
-    margin-top: 3rem;
-  }
-
-  &.note--last {
-    margin-bottom: 3rem;
-  }
-
-  .note__title {
-    color: $color-warn;
-  }
-
-  .note__desc {
-    color: $color-gray;
-  }
-}
 </style>

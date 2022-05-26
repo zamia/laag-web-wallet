@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <MainNav activeItem="services"></MainNav>
+  <MainNav active="services"></MainNav>
 
 </template>
 

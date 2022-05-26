@@ -6,7 +6,7 @@ const router = useRouter();
 </script>
 
 <template>
-  <div class="header" @click="router.back()">
+  <div class="header clearfix" @click="router.back()">
     <Icon name="arrow-left"></Icon>
     <slot />
   </div>

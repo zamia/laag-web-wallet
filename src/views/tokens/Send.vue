@@ -33,10 +33,12 @@ const previewModalShowing = ref(false);
 
   <div class="amount">
     <span>Enter Amount:</span>
-    <div class="amount__input">
-      <VanField v-model="currentAmount" type="number" input-align="center"></VanField>
+    <div class="amount__block">
+      <VanField v-model="currentAmount" type="number" input-align="center" class="amount__input amount-input"
+        title="amount" placeholder="0.00">
+      </VanField>
+      <div class="amount__desc">$ {{ formatMoney(currentTotal) }} <span></span></div>
     </div>
-    <div class="amount__desc">$ {{ formatMoney(currentTotal) }} <span></span></div>
   </div>
   <div class="recipient">
     <span>Enter Recipient Address:</span>
@@ -81,12 +83,33 @@ const previewModalShowing = ref(false);
   margin-top: 3rem;
   text-align: center;
 
-  .amount__input {
-    margin: 1rem 0;
+  &__block {
+    background-color: $bg-light;
+    border-radius: 1rem;
+  }
+
+  &__input {
+    margin: 1rem 0 0;
+  }
+
+  &__desc {
+    padding-bottom: 1rem;
   }
 
   .van-field {
     border-radius: 999px;
+    background: none;
+  }
+}
+
+.amount-input {
+  font-size: 2rem;
+  color: $color-main;
+
+  .van-field__control,
+  input,
+  input:focus {
+    color: $color-main;
   }
 }
 
@@ -99,7 +122,7 @@ const previewModalShowing = ref(false);
   }
 
   .van-field {
-    border-radius: 999px;
+    border-radius: 1rem;
   }
 }
 

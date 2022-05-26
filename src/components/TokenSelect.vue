@@ -24,7 +24,7 @@ const tokenModalOnSelect = (item) => {
 
 <template>
   <div class="token-select">
-    <IconLink href="" :icon="tokenSelected.icon" icon-size="3rem">
+    <IconLink href="" :icon="tokenSelected.icon" icon-size="3rem" icon-type="img">
       <span class="token-select__name">{{ tokenSelected.symbol }}</span>
       <span class="token-select__desc">{{ tokenSelected.name }}</span>
     </IconLink>

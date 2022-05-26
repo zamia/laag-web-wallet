@@ -81,7 +81,7 @@ onMounted(() => {
   <div class="activity">
     <a :href="view_activity_url" target="_blank">View Activity</a>
   </div>
-  <MainNav activeItem="tokens"></MainNav>
+  <MainNav active="tokens"></MainNav>
 </template>
 
 <style scoped lang="scss">

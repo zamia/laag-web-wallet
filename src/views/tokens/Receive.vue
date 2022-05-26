@@ -12,11 +12,10 @@ const { store } = useStorageStore();
   <Header>Receive Token</Header>
   <div class="receive">
     <div class="token">
-      <div>Receiving</div>
       <TokenSelect v-model="tokenSelectedIndex"></TokenSelect>
     </div>
     <div class="address">
-      <div>Your Wallet Address for {{ tokenSelected.symbol }}</div>
+      <span>Your Wallet Address for {{ tokenSelected.symbol }}</span>
       <div class="address__qrcode">
         <VueQrcode :value="store.publicKey" :options="{ width: 200 }"></VueQrcode>
       </div>
@@ -25,10 +24,10 @@ const { store } = useStorageStore();
       </div>
       <CopyLink :value="store.publicKey" class="address__cmd"></CopyLink>
     </div>
-    <div class="share">
+    <VanButton class="share">
       <VanIcon name="share"></VanIcon>
       <span>Share</span>
-    </div>
+    </VanButton>
   </div>
 </template>
 <style scoped lang="scss">
@@ -43,21 +42,27 @@ const { store } = useStorageStore();
 .address {
   margin-top: 2rem;
 
+  >span {
+    color: $text-default;
+  }
+
   .address__qrcode canvas {
     margin-top: 1rem;
-    border: 2px solid $color-light;
+    border: 1px solid $bg-light;
+    background-color: $bg-light;
+    border-radius: 1rem;
   }
 
   .address__input {
     margin-top: 1rem;
     word-wrap: break-word;
-    background-color: $color-light;
+    background-color: $bg-light;
     padding: 1rem;
-    border: 2px solid $color-light;
+    border: 2px solid $bg-light;
+    border-radius: 1rem;
   }
 
   .address__cmd {
-    display: block;
     margin-top: 1rem;
     color: $color-main;
   }
@@ -66,6 +71,7 @@ const { store } = useStorageStore();
 .share {
   margin-top: 3rem;
   color: $color-main;
+  min-width: 10rem;
 
   span {
     margin-left: .5rem;

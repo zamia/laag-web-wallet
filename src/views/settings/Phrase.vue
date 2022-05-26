@@ -15,13 +15,13 @@ const onMouseUp = () => {
 </script>
 
 <template>
-  <Header>View your recovery phrase</Header>
+  <Header></Header>
   <Title title="Your Recovery Phrase">
     Recovery phrase is your backup of your wallet
   </Title>
 
   <div class="phrase">
-    Write down your recovery phrase:
+    Your recovery phrase:
     <div class="phrase__content"> {{ showPhrase }} </div>
     <CopyLink :value="store.phrase" class="phrase__cmd"></CopyLink>
 
@@ -53,8 +53,9 @@ const onMouseUp = () => {
 
   .phrase__content {
     margin: 1rem 0 1rem;
-    border: 1px solid $color-gray;
-    background-color: $color-light;
+    background-color: $bg-light;
+    border: 1px solid $bg-light;
+    border-radius: 1rem;
     padding: 2rem;
   }
 
@@ -70,6 +71,8 @@ const onMouseUp = () => {
 
 .note {
   margin-bottom: 1rem;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
 
   &.note--first {
     margin-top: 3rem;
@@ -80,7 +83,7 @@ const onMouseUp = () => {
   }
 
   .note__title {
-    color: $color-black;
+    color: $color-warn;
   }
 
   .note__desc {

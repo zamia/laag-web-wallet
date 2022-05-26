@@ -14,21 +14,10 @@ import {
   clusterApiUrl,
   PublicKey,
 } from "@solana/web3.js";
-import {
-  USDCMintAddress,
-  TokensPerUSDC,
-  DecimalsOfUSDC,
-} from "@/utils/constants.js";
+import { USDCMintAddress, TokensPerUSDC, DecimalsOfUSDC } from "@/utils/constants.js";
 
-export async function getSplTokenAmount(
-  connection,
-  wallet_address,
-  mint_address
-) {
-  const ata_addr = await getAssociatedTokenAddress(
-    mint_address,
-    wallet_address
-  );
+export async function getSplTokenAmount(connection, wallet_address, mint_address) {
+  const ata_addr = await getAssociatedTokenAddress(mint_address, wallet_address);
   console.log(`ata addr: ${ata_addr.toString()}`);
 
   let amount = 0;
@@ -73,15 +62,13 @@ export async function sendSol(from, to, amount, keypairs) {
       lamports: amount * LAMPORTS_PER_SOL,
     })
   );
-  const result = await sendAndConfirmTransaction(connection, transaction, [
-    keypairs,
-  ]);
+  const result = await sendAndConfirmTransaction(connection, transaction, [keypairs]);
   console.log(result);
   return result;
 }
 
 export async function sendUSDC(from, to, amount, keypairs) {
-  const tokenAmount = amount * TokensPerUSDC;
+  const tokenAmount = Number(amount * TokensPerUSDC).toFixed(0);
   const fromKey = new PublicKey(from);
   const toKey = new PublicKey(to);
   const mint = new PublicKey(USDCMintAddress);
@@ -113,14 +100,7 @@ export async function sendUSDC(from, to, amount, keypairs) {
     if (e instanceof TokenAccountNotFoundError) {
       console.log(`need create ata: ${toTokenKey}`);
       // create associated token account
-      transaction.add(
-        createAssociatedTokenAccountInstruction(
-          fromKey,
-          toTokenKey,
-          toKey,
-          mint
-        )
-      );
+      transaction.add(createAssociatedTokenAccountInstruction(fromKey, toTokenKey, toKey, mint));
     } else {
       console.log(`get to account error: ${e.message} `);
       return false;
@@ -128,51 +108,13 @@ export async function sendUSDC(from, to, amount, keypairs) {
   }
 
   transaction.add(
-    createTransferCheckedInstruction(
-      fromTokenKey,
-      mint,
-      toTokenKey,
-      fromKey,
-      tokenAmount,
-      DecimalsOfUSDC
-    )
+    createTransferCheckedInstruction(fromTokenKey, mint, toTokenKey, fromKey, tokenAmount, DecimalsOfUSDC)
   );
 
   console.log(`prepare to send transaction`);
-  const result = await sendAndConfirmTransaction(connection, transaction, [
-    keypairs,
-  ]);
+  const result = await sendAndConfirmTransaction(connection, transaction, [keypairs]);
 
   console.log(result);
 
   return result;
-}
-
-export async function swapToken(fromToken, toToken, amount, keypairs) {
-  const connection = new Connection(
-    clusterApiUrl("mainnet-beta"),
-    "singleGossip"
-  );
-  const orca = getOrca(connection);
-
-  // test swap 0.05 sol for USDC
-  try {
-    const orcaPool = orca.getPool(OrcaPoolConfig.SOL_USDC);
-    const solToken = orcaPool.getTokenA();
-    const solAmount = new Decimal(0.05);
-    const quote = await orcaPool.getQuote(solToken, solAmount);
-    const usdcAmount = quote.getMinOutputAmount();
-    console.log(`usdc amount minimum output: ${usdcAmount.toNumber()}`);
-
-    const swapPayload = await orcaPool.swap(
-      keypair,
-      solToken,
-      solAmount,
-      usdcAmount
-    );
-    const swapTxId = await swapPayload.execute();
-    console.log(`swap tx id: ${swapTxId}`);
-  } catch (e) {
-    console.log(`error found: ${e.message}`);
-  }
 }

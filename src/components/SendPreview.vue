@@ -10,7 +10,6 @@ const fee = ref(0.00005);
 </script>
 <template>
   <div class="send-prereview">
-    <Title title="Review Transaction">Review Transaction Detail Information</Title>
     <div class="review-item">
       <div class="review-item__desc">Sending Amount</div>
       <div class="review-item__content">{{ amount }} {{ token }}</div>
