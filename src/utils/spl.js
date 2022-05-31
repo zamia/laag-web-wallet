@@ -4,6 +4,7 @@ import {
   createAssociatedTokenAccountInstruction,
   createTransferCheckedInstruction,
   TokenAccountNotFoundError,
+  getMinimumBalanceForRentExemptAccount,
 } from "@solana/spl-token";
 import {
   Connection,
@@ -52,9 +53,49 @@ export function shortAddress(addr) {
   }
 }
 
-export async function sendSol(from, to, amount, keypairs) {
+export async function buildSendTransaction(token, from, to, amount) {
+  const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
+
+  let transaction = null;
+  let needNewAta = false;
+  let fee = 0;
+
+  switch (token) {
+    case "SOL":
+      transaction = buildSolSendTx(from, to, amount).transaction;
+      break;
+    case "USDC":
+      const tx = await buildUsdcSendTx(from, to, amount);
+      transaction = tx.transaction;
+      needNewAta = tx.needNewAta;
+      break;
+
+    default:
+      return {};
+  }
+
+  const blockhash = (await connection.getLatestBlockhash("finalized")).blockhash;
+  transaction.recentBlockhash = blockhash;
+  transaction.feePayer = new PublicKey(from);
+  console.log(`recent blockhash: ${blockhash}`);
+
+  fee += await transaction.getEstimatedFee(connection);
+  console.log(`estimated fee: ${fee}`);
+
+  // if need new ATA
+  if (needNewAta) {
+    const ata_fee = await getMinimumBalanceForRentExemptAccount(connection);
+    console.log(`estimated ata fee: ${ata_fee}`);
+    fee += ata_fee;
+  }
+
+  return { transaction, fee };
+}
+
+function buildSolSendTx(from, to, amount) {
   const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
   const transaction = new Transaction();
+
   transaction.add(
     SystemProgram.transfer({
       fromPubkey: new PublicKey(from),
@@ -62,12 +103,15 @@ export async function sendSol(from, to, amount, keypairs) {
       lamports: amount * LAMPORTS_PER_SOL,
     })
   );
-  const result = await sendAndConfirmTransaction(connection, transaction, [keypairs]);
-  console.log(result);
-  return result;
-}
 
-export async function sendUSDC(from, to, amount, keypairs) {
+  // const result = await sendAndConfirmTransaction(connection, transaction, [keypairs]);
+  return { transaction };
+}
+async function buildUsdcSendTx(from, to, amount) {
+  const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
+  const transaction = new Transaction();
+  let needNewAta = false;
+
   const tokenAmount = Number(amount * TokensPerUSDC).toFixed(0);
   const fromKey = new PublicKey(from);
   const toKey = new PublicKey(to);
@@ -75,9 +119,6 @@ export async function sendUSDC(from, to, amount, keypairs) {
 
   const fromTokenKey = await getAssociatedTokenAddress(mint, fromKey);
   const toTokenKey = await getAssociatedTokenAddress(mint, toKey);
-
-  const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
-  const transaction = new Transaction();
 
   try {
     const fromTokenAccount = await getAccount(connection, fromTokenKey);
@@ -101,6 +142,7 @@ export async function sendUSDC(from, to, amount, keypairs) {
       console.log(`need create ata: ${toTokenKey}`);
       // create associated token account
       transaction.add(createAssociatedTokenAccountInstruction(fromKey, toTokenKey, toKey, mint));
+      needNewAta = true;
     } else {
       console.log(`get to account error: ${e.message} `);
       return false;
@@ -112,9 +154,6 @@ export async function sendUSDC(from, to, amount, keypairs) {
   );
 
   console.log(`prepare to send transaction`);
-  const result = await sendAndConfirmTransaction(connection, transaction, [keypairs]);
-
-  console.log(result);
-
-  return result;
+  // const result = await sendAndConfirmTransaction(connection, transaction, [keypairs]);
+  return { transaction, needNewAta };
 }

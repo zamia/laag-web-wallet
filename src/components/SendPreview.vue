@@ -1,26 +1,33 @@
 <script setup>
-import { shortAddress } from '@/utils';
+import { shortAddress, formatAmount } from '@/utils';
+import { buildSendTransaction } from '@/utils';
+import { usePhraseStore } from '@/store';
+import { LAMPORTS_PER_SOL } from '@solana/web3.js';
 
+const store = usePhraseStore();
 const props = defineProps(["token", "amount", "recipient"]);
-const token = toRef(props, "token")
-const amount = toRef(props, "amount")
-const recipient = toRef(props, "recipient")
-const fee = ref(0.00005);
+const estimated_fee = ref(0.0);
+
+watchEffect(async () => {
+  const { fee } = await buildSendTransaction(props.token, store.publicKey, props.recipient, props.amount);
+  console.log(`estimated tx fee: ${fee}`);
+  estimated_fee.value = fee / LAMPORTS_PER_SOL;
+});
 
 </script>
 <template>
   <div class="send-prereview">
     <div class="review-item">
       <div class="review-item__desc">Sending Amount</div>
-      <div class="review-item__content">{{ amount }} {{ token }}</div>
+      <div class="review-item__content">{{ props.amount }} {{ props.token }}</div>
     </div>
     <div class="review-item">
       <div class="review-item__desc">Estimated Fee</div>
-      <div class="review-item__content">{{ fee }} SOL</div>
+      <div class="review-item__content">{{ formatAmount(estimated_fee) }} SOL</div>
     </div>
     <div class="review-item">
       <div class="review-item__desc">Recipient Address</div>
-      <div class="address review-item__content">{{ shortAddress(recipient) }}</div>
+      <div class="address review-item__content">{{ shortAddress(props.recipient) }}</div>
     </div>
     <div class="note">
       * network fee is estimated and charged by Solona blockchain

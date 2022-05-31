@@ -1,6 +1,7 @@
 <script setup>
 import { useStorageStore } from '@/composables'
-import { sendSol, sendUSDC } from '@/utils'
+import { buildSendTransaction } from '@/utils'
+import { Connection, sendAndConfirmTransaction } from '@solana/web3.js';
 
 const props = defineProps(["token", "amount", "recipient"])
 const { token, amount, recipient } = props;
@@ -19,19 +20,13 @@ const sendingSuccess = computed(() => sendingStatus.value == "success");
 const sendingError = computed(() => sendingStatus.value == "error");
 
 const sendTx = async () => {
-  let result;
-
-  switch (token) {
-    case "SOL":
-      result = await sendSol(store.publicKey, recipient, amount, keypairs);
-      break;
-    case "USDC":
-      result = await sendUSDC(store.publicKey, recipient, amount, keypairs);
-      break;
-    default:
-      console.log("Laag Wallet doesn't support this token");
+  const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed")
+  const { transaction, fee } = buildSendTransaction(token, store.publicKey, recipient, amount);
+  if (!transaction) {
+    console.log(`build tx error`);
   }
 
+  const result = await sendAndConfirmTransaction(connection, transaction, [keypairs]);
   return result;
 };
 

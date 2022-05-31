@@ -1,5 +1,6 @@
 <script setup>
 import { PresetTokenList, formatMoney, isValidAddress } from '@/utils'
+import { Connection, clusterApiUrl } from '@solana/web3.js'
 
 const tokenSelectedIndex = ref(0);
 const currentAmount = ref(0);
@@ -22,6 +23,12 @@ const executeSendTx = () => {
 };
 
 const previewModalShowing = ref(false);
+
+onMounted(async () => {
+  const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
+  const blockhash = (await connection.getLatestBlockhash()).blockhash;
+  console.log(`last blockhash: ${blockhash}`);
+});
 
 </script>
 
