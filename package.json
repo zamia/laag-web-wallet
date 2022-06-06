@@ -11,7 +11,7 @@
     "@chenfengyuan/vue-qrcode": "2",
     "@orca-so/sdk": "^1.2.24",
     "@solana/spl-token": "^0.2.0",
-    "@solana/spl-token-registry": "^0.2.4041",
+    "@solana/spl-token-registry": "^0.2.4316",
     "@solana/web3.js": "^1.43.0",
     "axios": "^0.27.2",
     "bip39": "^3.0.4",
