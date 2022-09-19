@@ -26,7 +26,7 @@
     "vue3-clipboard": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
+    "@babel/core": "^7.19.1",
     "@babel/eslint-parser": "^7.12.16",
     "@babel/preset-env": "^7.18.0",
     "@vicons/fa": "^0.12.0",
